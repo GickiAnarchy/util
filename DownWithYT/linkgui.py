@@ -60,7 +60,6 @@ class LinkGui:
         with open(f"{self.saveFile}", "wb") as file:
             pickle.dump(self.LL, file)
             file.close()
-        sg.popup("SAVED")
 
     def load(self):
         pick = pops.pop_load()
@@ -89,7 +88,7 @@ class LinkGui:
 #
 #    YT
 #
-    def download_audio(self):
+    def download_audio(self, window):
         perfect = True
         for link in self.LL.current:
             yt = YouTube(link)
@@ -109,9 +108,11 @@ class LinkGui:
             os.rename(out_file, new_file)
             name = os.path.split(new_file)
             self.LL.add_com(link, name[1])
+            self.save()
+            window.refresh()
         return perfect
 
-    def download_video(self):
+    def download_video(self, window):
         perfect = True
         for link in self.LL.current:
             yt = YouTube(link)
@@ -131,6 +132,8 @@ class LinkGui:
             os.rename(out_file, new_file)
             name = os.path.split(new_file)
             self.LL.add_com(link, name[1])
+            self.save()
+            window.refresh()
         return perfect
 
 #
@@ -186,6 +189,7 @@ class LinkGui:
             stat2 = window["-STAT2-"]
 
             if event in (None, "-QUIT-", sg.WIN_CLOSED):
+                self.save()
                 break
 
             if event == "-SAVE-":
@@ -215,11 +219,13 @@ class LinkGui:
                 print("Download pressed")
                 if len(self.LL.current) <= 0:
                     sg.popup("HEY! Link List is EMPTY!")
-                run_btn.update(disabled = True)
-                if values["-RA-"] == True:
-                    window.perform_long_operation(self.download_audio(), "-END-")
-                if values["-RV-"] == True:
-                    window.perform_long_operation(self.download_video(), "-END-")
+                
+                if pops.loginWindow() == True:
+                    run_btn.update(disabled = True)
+                    if values["-RA-"] == True:
+                        window.perform_long_operation(self.download_audio(window), "-END-")
+                    if values["-RV-"] == True:
+                        window.perform_long_operation(self.download_video(window), "-END-")
                 run_btn.update(disabled = False)
 
             if event == "-END-":

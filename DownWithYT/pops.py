@@ -36,3 +36,29 @@ def open_tagger():
         event, values = tagger.read()
         if event == sg.WIN_CLOSED:
             tagger.close()
+
+def loginWindow():
+    passed = False
+    layout = [[sg.Text("Name: "), sg.Input("", key = "NAME")],
+                    [sg.Text("Password: "), sg.Input("", key = "PASSWORD")],
+                    [sg.Button("Submit", key = "SUBMIT_BTN"), sg.Button("Cancel", key = "CANCEL_BTN")]]
+    window = sg.Window("Login", layout, finalize = True)
+    
+    while True:
+        event, values = window.read()
+        name = window["NAME"]
+        pw = window["PASSWORD"]
+        
+        if event in ("CANCEL_BTN", sg.WINDOW_CLOSED):
+            break
+        
+        if event == "SUBMIT_BTN":
+            if name == pw:
+                passed = True
+            name.update("")
+            pw.update("")
+            sg.popup_auto_close(f"Incorrect {name} {pw}")
+            break
+
+    window.close()
+    return passed
