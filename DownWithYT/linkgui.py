@@ -18,7 +18,7 @@ GREEN = "#6CD700"
 RED = "#D70010"
 BLUE = "#0800D7"
 
-data_dir = os.path.abspath(os.path.join(os.path.dirname(__file__),".", ".data"))
+data_dir = pops.data_dir
 COMPLETED = f"{data_dir}/all_completed.txt"
 BKP = f"{data_dir}/.links.fa.bak"
 
@@ -38,6 +38,7 @@ class LinkGui:
             self.LL = linklist
         #Save file name, if loaded or saved in session. (To avoid a popup constantly)
         self.saveFile = None
+        self.passed = False
 
     @property
     def LL(self):
@@ -189,7 +190,8 @@ class LinkGui:
             stat2 = window["-STAT2-"]
 
             if event in (None, "-QUIT-", sg.WIN_CLOSED):
-                self.save()
+                if self.saveFile:
+                    self.save()
                 break
 
             if event == "-SAVE-":
@@ -213,20 +215,30 @@ class LinkGui:
             if event == "-ADD-":
                 print("Add pressed")
                 l = values["-LINK-"]
-                self.add(l)
+                ##DEV
+                if l == "CREATE":
+                    pops.create_user()
+                if l == "PURGEUSERS":
+                    u = pops.read_users()
+                    pops.write_users(u, True)
+                if l == "SHOWUSERS":
+                    print(pops.get_users_string())
+                if l == "LOGIN":
+                    self.passed = pops.login_window()
+                ####
+                else:
+                    self.add(l)
 
             if event == "-RUN-":
                 print("Download pressed")
                 if len(self.LL.current) <= 0:
                     sg.popup("HEY! Link List is EMPTY!")
-                
-                if pops.loginWindow() == True:
-                    run_btn.update(disabled = True)
-                    if values["-RA-"] == True:
-                        window.perform_long_operation(self.download_audio(window), "-END-")
-                    if values["-RV-"] == True:
-                        window.perform_long_operation(self.download_video(window), "-END-")
-                run_btn.update(disabled = False)
+                run_btn.update(disabled = True)
+                if values["-RA-"] == True:
+                    window.perform_long_operation(self.download_audio(window), "-END-")
+                if values["-RV-"] == True:
+                    window.perform_long_operation(self.download_video(window), "-END-")
+            run_btn.update(disabled = False) 
 
             if event == "-END-":
                 end = values[event]
@@ -243,6 +255,7 @@ class LinkGui:
                 if self.saveFile == None:
                     stat2.update("No current LinkList file")
                 print("....update....")
+                
 
 
 #
