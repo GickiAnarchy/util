@@ -7,6 +7,11 @@ from PIL import Image
 DEFAULT_DIR = os.path.dirname(__file__)
 data_dir = os.path.abspath(os.path.join(os.path.dirname(__file__),".", ".data"))
 users_file = f"{data_dir}/.users.json"
+config = f"{data_dir}/.config.fa"
+
+if not os.path.exists(config):
+    with open(config, "x") as f:
+        f.close()
 
 if not os.path.isfile(users_file):
     tmpusers = {"NAME" : "PASSWORD"}
@@ -109,3 +114,58 @@ def login_window():
             break
     window.close()
     return passed
+
+#
+##
+def lock_window():
+    lock = False
+    top = [sg.Text("Enter a lock password")]
+    left = [[sg.Text("Password:")], [sg.Text("Verify Password: ")]]
+    right = [[sg.Input(password_char = "*", key = "pw1")], [sg.Input(password_char = "*", key = "pw2")]]
+    bottom = [sg.Button("Ok", key = "OK"), sg.Button("Cancel", key = "CANCEL")]
+    layout = [top, [sg.Frame(None, left, p = 0), sg.Frame(None, right, p = 0)], bottom]
+    window = sg.Window("Lock DwYT", layout, modal = True, keep_on_top = True, finalize = True)
+    while True:
+        event, values = window.read()
+        pw1 = values["pw1"]
+        pw2 = values["pw2"]
+        if event in (sg.WINDOW_CLOSED, "CANCEL"):
+            lock = False
+            break
+        if event == "OK":
+            if pw1 == pw2:
+                with open(config, "w") as c:
+                    c.write("True" + "\n")
+                    c.write(pw1)
+                lock = True
+                break
+            window["pw1"].update(background_color = "Red")
+            window["pw2"].update(background_color = "Red")
+    window.close()
+    return lock
+
+def unlock_window():
+    lock = True
+    layout = [[sg.Text("|—Enter Lock Code—|")],
+                     [sg.Input(key = "pw", password_char = "*")],
+                     [sg.Button("Unlock", key = "UNLOCK"), sg.Button("Cancel", key = "CANCEL")]]
+    window = sg.Window("Unlock", layout, modal = True, keep_on_top = True, finalize = True)
+    state, code = get_config()
+    while True:
+        event, values = window.read()
+        pw = values["pw"]
+        if event in (sg.WINDOW_CLOSED, "CANCEL"):
+            break
+        if event == "UNLOCK":
+            if pw == code:
+                lock = False
+            break
+    window.close()
+    return lock
+
+def get_config():
+    with open(config, "r") as c:
+        is_locked = bool(c.readline())
+        code = c.readline()
+        c.close()
+    return (is_locked, code)

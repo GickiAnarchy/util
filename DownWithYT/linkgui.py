@@ -20,7 +20,6 @@ BLUE = "#0800D7"
 
 data_dir = pops.data_dir
 COMPLETED = f"{data_dir}/all_completed.txt"
-BKP = f"{data_dir}/.links.fa.bak"
 
 
 class LinkGui:
@@ -38,7 +37,7 @@ class LinkGui:
             self.LL = linklist
         #Save file name, if loaded or saved in session. (To avoid a popup constantly)
         self.saveFile = None
-        self.passed = False
+        self.locked = pops.get_config()[0] or False
 
     @property
     def LL(self):
@@ -166,7 +165,7 @@ class LinkGui:
         layout = [
         [sg.Column(layout_left, justification = "left", pad = (5,5)), sg.Column(layout_right, justification = "right", pad = (5,5))],
         [sg.Column(layout_bottom, element_justification = "center", justification = "center", pad = (5,5))],
-        [sg.StatusBar("", key = "-STAT1-", size = (50,2)), sg.StatusBar("", key = "-STAT2-", size = (50,2))]
+        [sg.StatusBar("", key = "-STAT1-", size = (50,2)), sg.Button("Lock", key = "LOCK"), sg.StatusBar("", key = "-STAT2-", size = (50,2))]
         ]
         return layout
 
@@ -182,6 +181,7 @@ class LinkGui:
         while True:
             event, values = window.read()
 
+            add_btn = window["-ADD-"]
             run_btn = window["-RUN-"]
             load_btn = window["-LOAD-"]
             list_box = window["-LIST-"]
@@ -193,6 +193,13 @@ class LinkGui:
                 if self.saveFile:
                     self.save()
                 break
+
+            if event == "LOCK":
+                if self.locked:
+                    self.locked = pops.unlock_window()
+                if not self.locked:
+                    self.locked = pops.lock_window()
+                window.refresh()
 
             if event == "-SAVE-":
                 print("Save pressed")
@@ -223,8 +230,6 @@ class LinkGui:
                     pops.write_users(u, True)
                 if l == "SHOWUSERS":
                     print(pops.get_users_string())
-                if l == "LOGIN":
-                    self.passed = pops.login_window()
                 ####
                 else:
                     self.add(l)
@@ -248,6 +253,8 @@ class LinkGui:
                     self.save()
 
             if event is not None:
+                run_btn.update(disabled = self.locked)
+                add_btn.update(disabled = self.locked)
                 list_box.update(self.LL.current)
                 com_box.update(self.LL.completedNames())
                 if self.saveFile != None:
