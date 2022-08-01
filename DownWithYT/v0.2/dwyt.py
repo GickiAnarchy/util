@@ -1,7 +1,7 @@
-import os, time, sys
-from pytube import YouTube, Playlist, Channel, Search
+import os, sys, json
+from pytube import YouTube, Channel, Search
 
-MagickChannel = "https://youtube.com/user/MindofMagick"
+MagickChannel = Channel("https://youtube.com/user/MindofMagick")
 
 class DownWithYT:
     def __init__(self):
@@ -11,59 +11,44 @@ class DownWithYT:
         self.suggestions = []
         self.song = None
         self.save_file = "./.saved.json"
-        self.save_list = []
+        self.save_list = {}    #Title, URL
 
 
 #
 #    SAVE FILE AND LIST
 #
-    def check_save_file(self, create = False):
-        exist = os.path.exists(self.save_file)
-        if exist:
-            ret = True
-        if not exist:
-            if create:
-                with open(self.save_file, "w+") as f:
-                    f.close()
-            ret = False
-        return ret
+    def hasSavedFile(self):
+        return os.path.exists(self.save_file)
 
-    def read_saved(self):
-        self.check_save_file(True)
-        with open(self.save_file, "r") as savefile:
-            for item in savefile:
-                if YouTube(item) in self.save_list:
-                    print(f"skipped loading {YouTube(item).title}")
-                    continue
-                self.save_list.append(YouTube(item))
-            savefile.close()
-        print(f"{str(len(self.save_list))}")
-        print("lOaDeD")
-
-    def write_saved(self):
-        urls = []
-        for s in self.save_list:
-            urls.append(s.watch_url)
+    def saveFile(self):
         with open(self.save_file, "w+") as savefile:
-            for item in self.save_list:
-                savefile.write(item.watch_url)
+            data = json.loads(self.save_list)
+            json.dump(data, savefile, indent = 2)
+            print("save success")
             savefile.close()
-        print("SaVeD")
+        print("List saved to file.")
 
-    def add_to_saved(self, song: YouTube):
-        self.read_saved()
-        self.save_list.append(song)
-        print("aDdEd")
-        self.write_saved()
+    def loadFile(self, clear = True):
+        if not self.hasSavedFile():
+            print("There is no save file present")
+            return
+        if clear:
+            self.save_list = {}
+        with open(self.save_file, "r") as file:
+            self.save_list = json.load(file)
+            file.close()
+        print("file loaded to list")
 
-    def show_saved(self):
-        os.system("clear")
-        print("SAVED SONGS")
-        self.read_saved()
-        for song in self.save_list:
-            print(f"{song.title}\n\t{song.watch_url}")
-            time.sleep(.2)
-        input()
+    def addToSave(self, song: YouTube):
+        t = song.title
+        u = song.watch_url
+        self.save_list[t] = u
+        print(f"{t} added to dictionary")
+
+    def showList(self):
+        for t, u in self.save_list.items():
+            print(f"{t}:\n")
+            print(f"\t{u}")
 
 
 #
@@ -78,22 +63,22 @@ class DownWithYT:
         poss = input("Select a song # to choose.\n")
         if poss.isdigit() and int(poss) <= len(self.results):
             self.song = self.results[int(poss)]
-            AV = input("Press /'a/' for Audio or /'v/' for Video:\n\"add\" to add to save_list")
+            AV = input("Press /'a/' for Audio or /'v/' for Video:\n\"add\" to add to save_list\n")
             if AV.lower() == "add":
-                self.add_to_saved(self.song)
-                self.show_saved()
+                self.addToSave(self.song)
                 return
             if AV.lower() == "a":
                 good = self.download_audio(self.song)
+                input()
             if AV.lower() == "v":
                 good = self.download_video(self.song)
+                input()
             if AV.lower() not in ("v", "a"):
                 good = False
             if good:
                 print(f"{self.song.title} downloaded")
             if not good:
                 print(f"{self.song.title} failed during download")
-
 
     def search_input(self):
         answer = input("What do you want to search for?\n")
@@ -156,12 +141,12 @@ class DownWithYT:
                 os.system("clear")
                 i = 0
             print("DOWN WITH YOUTUBE :: FatherAnarchy")
-            print(f"\n\tSave File Present?: {self.check_save_file()}")
-            if self.check_save_file():
+            print(f"\n\tSave File Present?: {self.hasSavedFile()}")
+            if self.hasSavedFile():
                 print("\t\t Enter \"read\" or \"r\" to load the saved file.\n")
             for option in options:
                 print(option)
-            action = input("What will you do?")
+            action = input("What will you do?\n")
             if action == "1":
                 self.search_input()
                 self.show_results()
@@ -186,19 +171,70 @@ class DownWithYT:
                         os.chdir(dir_list[int(choice)])
             if action == "6":
                 os.chdir("..")
-            if action.lower() in ("r", "read") and self.check_save_file():
-                self.read_saved()
-                self.show_saved()
+            if action.lower() in ("r", "read") and self.hasSavedFile():
+                self.loadFile()
+                self.showList()
             if action == "0":
                 break
             i += 1
-
         sys.exit()
 
 
-#
+#    END
 #
 #
 if __name__ == "__main__":
     dwyt = DownWithYT()
     dwyt.test_main()
+
+
+
+'''
+    def check_save_file(self, create = False):
+        exist = os.path.exists(self.save_file)
+        if exist:
+            ret = True
+        if not exist:
+            if create:
+                with open(self.save_file, "w+") as f:
+                    f.close()
+            ret = False
+        return ret
+
+    def read_saved(self):
+        self.check_save_file(True)
+        with open(self.save_file, "r") as savefile:
+            for item in savefile:
+                if YouTube(item) in self.save_list:
+                    print(f"skipped loading {YouTube(item).title}")
+                    continue
+                self.save_list.append(YouTube(item))
+            savefile.close()
+        print(f"{str(len(self.save_list))}")
+        print("lOaDeD")
+
+    def write_saved(self):
+        urls = []
+        for s in self.save_list:
+            urls.append(s.watch_url)
+        with open(self.save_file, "w+") as savefile:
+            for item in self.save_list:
+                savefile.write(item.watch_url)
+            savefile.close()
+        print("SaVeD")
+
+    def add_to_saved(self, song: YouTube):
+        self.read_saved()
+        self.save_list.append(song)
+        print("aDdEd")
+        self.write_saved()
+
+    def show_saved(self):
+        os.system("clear")
+        print("SAVED SONGS")
+        self.read_saved()
+        for song in self.save_list:
+            print(f"{song.title}\n\t{song.watch_url}")
+            time.sleep(.2)
+        input()
+'''
