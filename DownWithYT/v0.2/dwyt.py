@@ -97,9 +97,8 @@ class DownWithYT:
         self.results = self.search.results
 
     def search_more(self):
-        self.results.clear()
         self.search.get_next_results()
-        self.results = self.search.results
+        self.results += self.search.results
 
 #
 #    DOWNLOADING
