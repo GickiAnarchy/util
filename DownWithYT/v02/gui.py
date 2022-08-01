@@ -1,7 +1,7 @@
 ''' GUI For v.0.2 '''
-
 import PySimpleGUI as sg
-
+import b64_images
+import dwyt
 
 menu = [["&File",["&New", "&Open", "&Save"]],
                 ["About", ["Contact"]],
@@ -11,7 +11,7 @@ menu = [["&File",["&New", "&Open", "&Save"]],
 layout = [[sg.Menu(menu)]]
 
 
-window = sg.Window("DWYT", layout, finalize = True, size = (300, 300))
+window = sg.Window("DWYT", layout, finalize = True, size = (300, 300), icon = b64_images.dwyt_icon)
 
 
 def run():
