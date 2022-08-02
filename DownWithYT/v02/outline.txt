@@ -1,0 +1,12 @@
+Down with YouTube
+1. Search YouTube
+* List
+* ListBox - Select what you want
+2. List of selected songs
+* Add songs
+* Remove songs
+* download list or individual videos
+3. Download
+* Use oauth for age restricted videos
+4. Save        
+* hidden *.fa in os.path.dir(__file__)

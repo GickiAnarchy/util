@@ -1,7 +1,6 @@
 ''' GUI For v.0.2 '''
 import PySimpleGUI as sg
-import b64_images
-import dwyt
+from b64_images import *
 
 menu = [["&File",["&New", "&Open", "&Save"]],
                 ["About", ["Contact"]],
@@ -11,10 +10,11 @@ menu = [["&File",["&New", "&Open", "&Save"]],
 layout = [[sg.Menu(menu)]]
 
 
-window = sg.Window("DWYT", layout, finalize = True, size = (300, 300), icon = b64_images.dwyt_icon)
+window = sg.Window("Down with YouTube", layout, size = (768, 400), finalize = True)
 
 
-def run():
+
+if __name__ == "__main__":
     while True:
         event, values = window.read()
         
@@ -22,7 +22,3 @@ def run():
             break
 
     window.close()
-
-
-if __name__ == "__main__":
-    run()

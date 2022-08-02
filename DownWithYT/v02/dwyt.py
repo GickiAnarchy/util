@@ -54,36 +54,28 @@ class DownWithYT:
 #
 #    SEARCHING
 #
-    def get_results(self):
-        return self.results
-
-    def show_results(self):
-        for res in self.results:
-            print(f"{str(self.results.index(res))}: {res.title}")
-        poss = input("Select a song # to choose.\n")
-        if poss.isdigit() and int(poss) <= len(self.results):
-            self.song = self.results[int(poss)]
-            AV = input("Press /'a/' for Audio or /'v/' for Video:\n\"add\" to add to save_list\n")
-            if AV.lower() == "add":
-                self.addToSave(self.song)
-                return
-            if AV.lower() == "a":
-                good = self.download_audio(self.song)
-                input()
-            if AV.lower() == "v":
-                good = self.download_video(self.song)
-                input()
-            if AV.lower() not in ("v", "a"):
-                good = False
-            if good:
-                print(f"{self.song.title} downloaded")
-            if not good:
-                print(f"{self.song.title} failed during download")
-
     def search_input(self):
         answer = input("What do you want to search for?\n")
         self.search_yt(answer)
 
+    def search_yt(self, msg):
+        self.search = Search(msg)
+        self.results = self.search.results
+
+    def get_results(self):
+        return self.results
+
+    def show_results(self):
+        if self.results == None:
+            return False
+        for res in self.results:
+            print(f"{str(self.results.index(res))}: {res.title}")
+
+    def search_more(self):
+        self.search.get_next_results()
+        self.results += self.search.results
+
+#    BROKEN
     def show_suggestions(self):
         print("SUGGESTIONS") 
         self.suggestions = self.search.completion_suggestions
@@ -91,14 +83,6 @@ class DownWithYT:
             num = self.suggestions.index(sug)
             print(f"{str(num)}: {sug}")
             print(type(sug))
-
-    def search_yt(self, msg):
-        self.search = Search(msg)
-        self.results = self.search.results
-
-    def search_more(self):
-        self.search.get_next_results()
-        self.results += self.search.results
 
 #
 #    DOWNLOADING
@@ -116,8 +100,8 @@ class DownWithYT:
         name = os.path.split(new_file)
         return True
 
-    def download_video(self, yt):
-        video = yt.streams.first()
+    def download_video(self, yt: YouTube):
+        video = yt.streams.filter(progressive=True, file_extension='mp4').order_by('resolution').desc().first().download()
         destination = "."
         try:
             out_file = video.download(output_path=destination)
@@ -130,9 +114,33 @@ class DownWithYT:
         return True
 
 #
-#    MAIN   
+#    CLI
 #
-    def test_main(self):
+    def _debug_show_results(self):
+        for res in self.results:
+            print(f"{str(self.results.index(res))}: {res.title}")
+        poss = input("Select a song # to choose.\n")
+        if poss.isdigit() and int(poss) <= len(self.results):
+            song = self.results[int(poss)]
+            self.song = YouTube(song.watch_url, use_oauth=True, allow_oauth_cache=True)
+            AV = input("Press /'a/' for Audio or /'v/' for Video:\n\"add\" to add to save_list\n")
+            if AV.lower() == "add":
+                self.addToSave(self.song)
+                return
+            if AV.lower() == "a":
+                good = self.download_audio(self.song)
+                input()
+            if AV.lower() == "v":
+                good = self.download_video(self.song)
+                input()
+            if AV.lower() not in ("v", "a"):
+                good = False
+            if good:
+                print(f"{self.song.title} downloaded")
+            if not good:
+                print(f"{self.song.title} failed during download")
+
+    def _debug_main(self):
         options = ["1: Search YouTube", "2: Show Results", "3: Get more results", "4: Show Suggestions", "5: Change Directory", "6: Up a Directory", "0: Exit"]
         i = 0
         while True:
@@ -148,14 +156,14 @@ class DownWithYT:
             action = input("What will you do?\n")
             if action == "1":
                 self.search_input()
-                self.show_results()
+                self._debug_show_results()
             if action == "2":
                 if self.search != None:
-                    self.show_results()
+                    self._debug_show_results()
             if action == "3":
                 if self.search != None:
                     self.search_more()
-                    self.show_results()
+                    self._debug_show_results()
             if action == "4":
                 print("Suggestions are broken temporarily/")
             if action == "5":
@@ -186,4 +194,4 @@ class DownWithYT:
 #
 if __name__ == "__main__":
     dwyt = DownWithYT()
-    dwyt.test_main()
+    dwyt._debug_main()
