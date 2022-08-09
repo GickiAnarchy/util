@@ -186,6 +186,8 @@ class DownWithYT:
             if action == "0":
                 break
             i += 1
+            
+            
         sys.exit()
 
 

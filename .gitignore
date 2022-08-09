@@ -137,3 +137,6 @@ dmypy.json
 /DownWithYT/.data/
 /DownWithYT/v01/.data
 /DownWithYT/v02/*.mp3
+
+*.mp3
+*.wav

@@ -2,23 +2,15 @@
 import PySimpleGUI as sg
 from b64_images import *
 
-menu = [["&File",["&New", "&Open", "&Save"]],
-                ["About", ["Contact"]],
-                ["Exit",["&Quit"]],]
+
+class DWYT_GUI:
+    def __init__(self):
+        self.main_window = None
 
 
-layout = [[sg.Menu(menu)]]
-
-
-window = sg.Window("Down with YouTube", layout, size = (768, 400), finalize = True)
-
+    def makeLayouts(self):
+        self.main_buttons = [sg.Button("Save", k = "btn_save"), sg.Button("Load", k = "btn_load"), sg.Button("Quit", k = "btn_quit")]
 
 
 if __name__ == "__main__":
-    while True:
-        event, values = window.read()
-        
-        if event in ("Quit", sg.WINDOW_CLOSED):
-            break
-
-    window.close()
+    pass
