@@ -16,7 +16,7 @@ class DownWithYT:
 #
 #    SEARCHING
 #
-    def searchYT  (self, inquiry):
+    def searchYT(self, inquiry):
         self.search = Search(inquiry)
         self.results = self.search.results
 
@@ -26,8 +26,7 @@ class DownWithYT:
 
     @property
     def results(self):
-        if len(self.results) != 0:
-            return self._results
+        return self._results
     @results.setter
     def results(self, new_results):
         self._results = new_results
@@ -111,9 +110,53 @@ class DownWithYT:
         name = os.path.split(new_file)
         return True
 
+#    END
+#
+#
+
+#
+#    CLI
+#
+
+def ask_user(question):
+    return input(question)
+
+
+def run_cli():
+    dyt = DownWithYT()
+    print()
+    look_for = input("Searching YouTube for.....?? ")
+    if look_for in ("exit", "x"):
+        return
+    dyt.searchYT(look_for)
+    while True:
+        print()
+        for r in dyt.results:
+            print(f"{str(dyt.results.index(r))} | {r.title}")
+        
+        print()
+        choose = input("Choose the number to select the video or press \'m\' to search more")
+        if choose.isdigit():
+            if int(choose) <= len(dyt.results):
+                choice = dyt.results[int(choose)]
+                print(f"{choice.title} was chosen\nPress \'1\' for Audio or \'2\' for Video")
+                dl = input("::")
+                if dl == "1":
+                    dyt.download_audio(choice)
+                if dl == "2":
+                    dyt.download_video(choice)
+        
+        if choose == "m":
+            dyt.search_more()
+        
+        if choose.lower() in ("x", "exit", "quit"):
+            break
+
+
 
 #    END
 #
 #
 if __name__ == "__main__":
     print(f"{os.path.basename(__file__)} loaded")
+    run_cli()
