@@ -11,6 +11,7 @@ class DownWithYT:
         self.search = None
         self.urls = {}
         self.save_file = "./.saved.json"
+        self.destination = "../.."
 
 
 #
@@ -22,7 +23,7 @@ class DownWithYT:
 
     def search_more(self):
         self.search.get_next_results()
-        self.results += self.search.results
+        #self.results += self.search.results
 
     @property
     def results(self):
@@ -86,9 +87,9 @@ class DownWithYT:
 
     def download_audio(self, yt):
         audio = yt.streams.get_audio_only()
-        destination = "."
+        #destination = "."
         try:
-            out_file = audio.download(output_path=destination)
+            out_file = audio.download(output_path=self.destination)
         except:
             return False
         base, ext = os.path.splitext(out_file)
@@ -99,9 +100,8 @@ class DownWithYT:
 
     def download_video(self, yt: YouTube):
         video = yt.streams.filter(progressive=True, file_extension='mp4').order_by('resolution').desc().first().download()
-        destination = "."
         try:
-            out_file = video.download(output_path=destination)
+            out_file = video.download(output_path=self.destination)
         except:
             return False
         base, ext = os.path.splitext(out_file)
