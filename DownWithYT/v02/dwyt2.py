@@ -1,11 +1,10 @@
 import os
-import sys
 import json
 from pytube import YouTube, Channel, Search
 
 MagickChannel = Channel("https://youtube.com/user/MindofMagick")
 
-class DownWithYT:
+class DWYT:
     def __init__(self):
         self.results = []
         self.search = None
@@ -58,6 +57,7 @@ class DownWithYT:
             file.close()
         print("file loaded to list")
 
+
 #
 #    URL DICTIONARY
 #
@@ -87,7 +87,6 @@ class DownWithYT:
 
     def download_audio(self, yt):
         audio = yt.streams.get_audio_only()
-        #destination = "."
         try:
             out_file = audio.download(output_path=self.destination)
         except:
@@ -123,7 +122,7 @@ def ask_user(question):
 
 
 def run_cli():
-    dyt = DownWithYT()
+    dyt = DWYT()
     print()
     look_for = input("Searching YouTube for.....?? ")
     if look_for in ("exit", "x"):
