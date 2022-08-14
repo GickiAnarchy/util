@@ -39,6 +39,8 @@ class DWYT_GUI:
 
 
     def makeWindow(self):
+        sg.theme("DarkBlack1")
+        
         l = self.makeLayouts()
         main_window = sg.Window("Down With YouTube", l, size = (768, 500), grab_anywhere = True, element_justification = "Center", finalize = True)
         return main_window
