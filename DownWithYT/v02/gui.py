@@ -14,7 +14,9 @@ class DWYT_GUI:
         main_buttons = [[sg.Frame(" ", [[sg.Button("Save", k = "save_btn"), sg.Button("Load", k = "load_btn"), sg.Button("Quit", k = "quit_btn")]], element_justification = "Center")]]
 
         search_layout = [[sg.Input("", k = "search_input"), sg.Button("Search", k = "search_btn")],
-                                    [sg.Listbox(self.dwyt.results, k = "results_list", size = (45, 15), expand_y = True)]]
+                                    [sg.Column([sg.Listbox(self.dwyt.results, k = "results_list", size = (45, 15), expand_y = True)), 
+                                    sg.Column([ [sg.Button("Select", key = "select_btn")] ])]
+                                    ]]
 
         home_layout = []
 

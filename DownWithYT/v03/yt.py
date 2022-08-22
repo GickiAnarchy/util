@@ -1,15 +1,20 @@
-from pytube import YouTube, Search
 import os
+import json
+from pytube import YouTube, Search
 
 
-track_7 = "https://youtu.be/R44K3tUFh60"
+TRACK_7 = "https://youtu.be/R44K3tUFh60"
+
 
 #FA YouTube Manager
 class YT:
-    def __init__(self, url):
+    ''' Class by FA to wrap pytubes YouTube module '''
+    def __init__(self, url = ""):
         if type(url) == YouTube:
             self.tube = url
         if type(url) == str:
+            if url == "":
+                return
             try:
                 self.tube = YouTube(url)
             except Exception as e:
@@ -19,15 +24,15 @@ class YT:
 
     def init2(self):
         yt: YouTube = self.tube
-        self.title  = yt.title()
-        self.url = yt.watch_url()
+        self.title  = yt.title
+        self.url = yt.watch_url
         self.id = yt.video_id
-        self.author = yt.author()
-        self.channel_url = yt.channel_url()
-        self.channel_id = yt.channel_id()
-        self.length = yt.length()
-        self.description = yt.description()
-        self.tags = yt.keywords()
+        self.author = yt.author
+        self.channel_url = yt.channel_url
+        self.channel_id = yt.channel_id
+        self.length = yt.length
+        self.description = yt.description
+        self.tags = yt.keywords
         self.search = Search(self.title)
         self.related = []
         self.set_oauth()
@@ -37,17 +42,17 @@ class YT:
 #        OVERRIDES
     def __repr__(self):
         ret = f"{self.title}\n\t{self.url}"
-        print(ret)
         return ret
 
 #
 #        METHODS
     def set_oauth(self, allow = True):
+        '''Sets <use_oauth> and <allow_oauth_cache> to @param:allow (defaults to True)'''
         self.tube.use_oauth=allow
         self.tube.allow_oauth_cache=allow
 
     def download_video(self, outdir = ".'"):
-        '''    download video from yt url'    '''
+        '''    download video from yt url    '''
         yt = self.tube
         video = yt.streams.filter(progressive=True, file_extension='mp4').order_by('resolution').desc().first().download()
         try:
@@ -64,6 +69,8 @@ class YT:
     def download_audio(self, outdir = "."):
         '''    download audio from video    '''
         yt = self.tube
+        if self.does_exist():
+            return
         audio = yt.streams.get_audio_only()
         try:
             out_file = audio.download(output_path=outdir)
@@ -76,14 +83,55 @@ class YT:
         os.rename(out_file, new_file)
         return True
 
+    def does_exist(self, save_dir = "."):
+        ''' Checks in directory for a file with the title + and ext '''
+        exts = [".mp3", ".mp4"]
+        for file in os.listdir(save_dir):
+            base, name = os.path.split(file)
+            if self.title in name:
+                print(f"{self.title} matches {name}")
+                return True
+        return False
+
     def get_related(self):
-#        if self.search == None:
-#            self.search = Search(self.title)
-        if len(self.related) > 0:
+        ''' returns the seach results '''
+        if len(self.related) != 0:
             self.search.get_next_results()
-        self.related = self.search.results()
+        self.related = self.search.results
         return self.related
 
+    def related_titles(self):
+        titles = []
+        self.get_related()
+        for y in self.related:
+            titles.append(y.title)
+        return titles
+
+    def show_related(self):
+        ''' prints the search results '''
+        for r in self.get_related():
+            print(r.title)
+
+    def get_dict(self):
+        ''' returns a dict of variables '''
+        fa_dict = {
+                        "Title" : self.title,
+                        "URL" : self.url,
+                        "ID" : self.id,
+                        "Author" : self.author,
+                        "Channel URL" : self.channel_url,
+                        "Channel ID" : self.channel_id,
+                        "Length" : self.length,
+                        "Description" : self.description,
+                        "Keywords" : self.tags
+                        }
+        return fa_dict
+
+    def show_dict(self):
+        ''' prints the dictionary '''
+        d = self.get_dict()
+        data = json.dumps(d, indent = 2)
+        print(data)
 
 #
 #        PROPERTIES
@@ -94,6 +142,7 @@ class YT:
     @tube.setter
     def tube(self, new):
         self._tube = new
+        self.init2()
 #    TITLE
     @property
     def title(self):
@@ -108,7 +157,7 @@ class YT:
     @url.setter
     def url(self, new):
         self._url = new
-#    ID 
+#    ID
     @property
     def id (self):
         return self._id 
@@ -139,7 +188,8 @@ class YT:
 #    LENGTH
     @property
     def length(self):
-        return self._length
+        mins = ( self._length / 60)
+        return mins
     @length.setter
     def length(self, new):
         self._length = new
@@ -165,10 +215,22 @@ class YT:
     def related(self, new):
         self._related = new
 
+    @staticmethod
+    def track7():
+        return YT(TRACK_7)
+
 
 #
 #
 #
-
 if __name__ == "__main__":
-    yt = YT(track_7)
+    yt = YT(TRACK_7)
+    yt.show_dict()
+    input()
+    yt.show_related()
+    input()
+    yt.show_related()
+    input()
+    yt.set_oauth(True)
+    yt.download_audio()
+    print(yt)     
