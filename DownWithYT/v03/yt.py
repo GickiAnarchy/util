@@ -70,7 +70,7 @@ class YT:
         '''    download audio from video    '''
         yt = self.tube
         if self.does_exist():
-            return
+            return False
         audio = yt.streams.get_audio_only()
         try:
             out_file = audio.download(output_path=outdir)
@@ -133,6 +133,15 @@ class YT:
         data = json.dumps(d, indent = 2)
         print(data)
 
+    def write_file(self):
+        file = self.title + ".json"
+        if os.path.isfile(file):
+            return False
+        with open(file, "w") as j:
+            data = json.dumps(self.get_dict(), indent = 2)
+            j.write(data)
+            j.close()
+        return True
 #
 #        PROPERTIES
 #    TUBE
