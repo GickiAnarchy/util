@@ -1,6 +1,7 @@
 import os, io
 from PIL import Image, ImageTk
 import PySimpleGUI as sg
+from pytube import YouTube, Search
 from v03.yt import YT, TRACK_7
 
 
@@ -18,6 +19,28 @@ class YT_GUI():
     imgs2 = []
     def __init__(self):
         sg.set_options(font = ("Helvetica", 8))
+
+    @staticmethod
+    def ask_search():
+        lo = [
+            [sg.Input("Enter search.....", size = (25, 1), k = "search_input"), sg.Button("Search", k = "search_btn"), sg.Button("Cancel", k = "cancel_btn")],
+            [sg.Listbox(None, size = (30,35), k = "results_box")]
+                ]
+        win2 = sg.Window("Search", lo, finalize = True)
+        while True:
+            event, values = win2.read()
+            results = win2["results_box"]
+            
+            if event in (sg.WINDOW_CLOSED, "cancel_btn"):
+                break
+            if event == "search_btn" and search is not None:
+                search = win2["search_input"].text
+                sch = Search(search)
+                sch.get_next_results()
+                results.update(sch.results)
+        
+        exit()
+
 
     @staticmethod
     def yt_info(yts: YT, imgs2 = imgs2):
@@ -89,8 +112,9 @@ class YT_GUI():
 
     @staticmethod
     def run():
-        YT_GUI.yt_info(T7)
-        YT_GUI.yt_related(T7)
+        YT_GUI.ask_search()
+#        YT_GUI.yt_info(T7)
+#        YT_GUI.yt_related(T7)
 
 #
 #
