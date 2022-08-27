@@ -1,0 +1,15 @@
+#kivy            .kv
+
+
+<SearchScreen>:
+    search_input = search_input
+    
+    GridLayout:
+        rows:        2
+        cols:         2
+        padding:   10
+        spacing:   10
+        Label:
+            text: "Search YouTube:"
+        TextInput:
+            id: search_input
