@@ -33,7 +33,7 @@ class YT:
         self.length = yt.length
         self.description = yt.description
         self.tags = yt.keywords
-        self.search = Search(self.title)
+        self.search = None
         self.related = []
         self.set_oauth()
 

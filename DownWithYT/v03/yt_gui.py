@@ -22,23 +22,29 @@ class YT_GUI():
 
     @staticmethod
     def ask_search():
+        sch = []
+        ret = []
         lo = [
-            [sg.Input("Enter search.....", size = (25, 1), k = "search_input"), sg.Button("Search", k = "search_btn"), sg.Button("Cancel", k = "cancel_btn")],
-            [sg.Listbox(None, size = (30,35), k = "results_box")]
+            [sg.Input("Enter search.....", size = (25, 1), do_not_clear = False, k = "search_input"), sg.Button("Search", k = "search_btn"), sg.Button("Cancel", k = "cancel_btn")],
+            [sg.Listbox(ret, size = (30,10), enable_events = True, k = "results_box"), sg.B("Info", k = "info_btn")]
                 ]
         win2 = sg.Window("Search", lo, finalize = True)
         while True:
             event, values = win2.read()
-            results = win2["results_box"]
+            resultsf = win2["results_box"]
             
             if event in (sg.WINDOW_CLOSED, "cancel_btn"):
                 break
-            if event == "search_btn" and search is not None:
-                search = win2["search_input"].text
+            if event == "search_btn" and win2["search_input"] is not None:
+                search = values["search_input"]
                 sch = Search(search)
-                sch.get_next_results()
-                results.update(sch.results)
-        
+                re = sch.results
+                for r in re:
+                    n = YT(r)
+                    ret.append(n)
+                resultsf.update(ret)
+            if event == "info_btn" and len(values["results_box"]):
+                YT_GUI().yt_info(values["results_box"][0])
         exit()
 
 
