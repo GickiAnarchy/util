@@ -6,7 +6,14 @@ TRACK_7 = "https://youtu.be/R44K3tUFh60"
 
 
 
-##fig YT
+	'''
+.  . ,--,--'
+|  | `- |   
+|  |  , |   
+`--|  `-'   
+.- |        
+`--'        
+	'''
 class YT:
     ''' Class by FA to wrap pytubes YouTube module '''
     def __init__(self, url = ""):
@@ -39,13 +46,27 @@ class YT:
 
 
 #
-##fig OVERRIDES
+	'''
+,,--. ,.   ,. .-,--. .-,--. .-,--. ,-_/ .-,--. .-,--. .---. 
+|`, | `|  /    `\__   `|__/  `|__/ '  | ' |   \ `\__  \___  
+|   |  | /      /     )| \   )| \  .^ | , |   /  /        \ 
+`---'  `'      '`--'  `'  `  `'  ` `--' `-^--'  '`--' `---' 
+                                                            
+                                                            
+	'''
     def __repr__(self):
         return  f"{self.title}"
         
 
 #
-##fig DOWNLOAD
+	'''
+.-,--.  ,,--. ,.   ,   ,. ,-,-.    ,   ,,--.     ,.   .-,--.  
+' |   \ |`, | `|  /|  /   ` | |    )   |`, |    / |   ' |   \ 
+, |   / |   |  | / | /      | |-. /    |   |   /~~|-. , |   / 
+`-^--'  `---'  `'  `'      ,' `-' `--' `---' ,'   `-' `-^--'  
+                                                              
+                                                              
+	'''
     def set_oauth(self, allow = True):
         '''Sets <use_oauth> and <allow_oauth_cache> to @param:allow (defaults to True)'''
         self.tube.use_oauth=allow
@@ -93,7 +114,14 @@ class YT:
                 return True
         return False
 
-##fig SEARCH
+	'''
+.---. .-,--.     ,.  .-,--.  ,--. ,-_/,. 
+\___   `\__     / |   `|__/ | `-' ' |_|/ 
+    \   /      /~~|-. )| \  |   .  /| |  
+`---'  '`--' ,'   `-' `'  ` `--'   `' `' 
+                                         
+                                         
+	'''
     def get_related(self):
         ''' returns the seach results '''
         if len(self.related) != 0:
