@@ -1,4 +1,6 @@
-import os, io
+#!/usr/bin/env python3
+import os
+import io
 from PIL import Image, ImageTk
 import PySimpleGUI as sg
 from pytube import YouTube, Search
@@ -11,7 +13,6 @@ T7 = YT(TRACK_7)
 images = ["images/green_light.png", "images/red_light.png"]
 
 
-#
 #
 #
 class YT_GUI():
@@ -116,13 +117,68 @@ class YT_GUI():
         win.close()
         return
 
+
+    @classmethod
+    def faask(cls):
+        ret = []
+        typed = sg.popup_get_text("Search YouTube:")
+        search = Search(typed)
+        orig = search.results
+        for item in orig:
+            temp = YT(item)
+            ret.append(temp)
+        __class__.list_info(ret)
+
+
+    @staticmethod
+    def list_info(results):
+        df = sg.DEFAULT_FONT
+        fsz = (df[1]/2)
+        sg.set_options(font = (df[0],int(fsz)+2))
+        selected = None
+
+        btns = [[sg.Button("Download", key = "btn_dl"),sg.Button("Close", key = "btn_close")]]
+        info = [[sg.Text("Title:"),sg.Text("..", key = "title")],
+        [sg.Text("Channel:"),sg.Text("..", key = "channel"),sg.Text("Length:"),sg.Text("..", key = "length")],
+        [sg.Text("", key = "description", size = (30,10), expand_x = True, justification='c')],
+        [sg.Text("", key = "tags")]]
+
+        lo = [
+        [sg.Combo(results, enable_events = True, key = "results")],
+        [sg.Frame('', info, element_justification = "Center", expand_x = True, expand_y = True)],
+        [sg.Frame('', btns, element_justification = "Center", expand_x = True)]
+        ]
+        win = sg.Window("dwYT", lo, element_justification = "c", size = (720,550), finalize = True)
+        win.Maximize()
+        while True:
+            event, values = win.read()
+            title = win["title"]
+            channel = win["channel"]
+            length = win["length"]
+            desc = win["description"]
+            tags = win["tags"]
+            if event in ("btn_close", sg.WINDOW_CLOSED):
+                break
+            if event == "btn_dl":
+                sg.popup("Feature Not Ready Yet")
+            if event == "results":
+                selected = values["results"]
+                try:
+                    title.update(selected.title)
+                    channel.update(selected.author)
+                    length.update(selected.length)
+                    desc.update(selected.description)
+                    tags.update(selected.tags)
+                except Exception as e:
+                    sg.popup(e.with_traceback())
+                    break
+        return
+
+
     @staticmethod
     def run():
-        YT_GUI.ask_search()
-#        YT_GUI.yt_info(T7)
-#        YT_GUI.yt_related(T7)
+        YT_GUI.faask()
 
-#
 #
 #
 if __name__ == "__main__":

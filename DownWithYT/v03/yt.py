@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 import os
 import json
 from pytube import YouTube, Search
@@ -5,11 +6,10 @@ from pytube import YouTube, Search
 TRACK_7 = "https://youtu.be/R44K3tUFh60"
 
 
-
-##fig YT
 class YT:
-    ''' Class by FA to wrap pytubes YouTube module '''
-    def __init__(self, url = ""):
+    """Class by FA to wrap pytubes YouTube module"""
+
+    def __init__(self, url=""):
         if type(url) == YouTube:
             self.tube = url
         if type(url) == str:
@@ -24,7 +24,7 @@ class YT:
 
     def init2(self):
         yt: YouTube = self.tube
-        self.title  = yt.title
+        self.title = yt.title
         self.url = yt.watch_url
         self.id = yt.video_id
         self.author = yt.author
@@ -37,24 +37,24 @@ class YT:
         self.related = []
         self.set_oauth()
 
-
-#
-##fig OVERRIDES
     def __repr__(self):
-        return  f"{self.title}"
-        
+        return f"{self.title}"
 
-#
-##fig DOWNLOAD
-    def set_oauth(self, allow = True):
-        '''Sets <use_oauth> and <allow_oauth_cache> to @param:allow (defaults to True)'''
-        self.tube.use_oauth=allow
-        self.tube.allow_oauth_cache=allow
+    def set_oauth(self, allow=True):
+        """Sets <use_oauth> and <allow_oauth_cache> to @param:allow (defaults to True)"""
+        self.tube.use_oauth = allow
+        self.tube.allow_oauth_cache = allow
 
-    def download_video(self, outdir = ".'"):
-        '''    download video from yt url    '''
+    def download_video(self, outdir=".'"):
+        """download video from yt url"""
         yt = self.tube
-        video = yt.streams.filter(progressive=True, file_extension='mp4').order_by('resolution').desc().first().download()
+        video = (
+            yt.streams.filter(progressive=True, file_extension="mp4")
+            .order_by("resolution")
+            .desc()
+            .first()
+            .download()
+        )
         try:
             out_file = video.download(output_path=outdir)
         except Exception as e:
@@ -62,12 +62,12 @@ class YT:
             print(e)
             return False
         base, ext = os.path.splitext(out_file)
-        new_file = base + '.mp4'
+        new_file = base + ".mp4"
         os.rename(out_file, new_file)
         return True
 
-    def download_audio(self, outdir = "."):
-        '''    download audio from video    '''
+    def download_audio(self, outdir="."):
+        """download audio from video"""
         yt = self.tube
         if self.does_exist():
             return False
@@ -79,12 +79,12 @@ class YT:
             print(e)
             return False
         base, ext = os.path.splitext(out_file)
-        new_file = base + '.mp3'
+        new_file = base + ".mp3"
         os.rename(out_file, new_file)
         return True
 
-    def does_exist(self, save_dir = "."):
-        ''' Checks in directory for a file with the title + and ext '''
+    def does_exist(self, save_dir="."):
+        """Checks in directory for a file with the title + and ext"""
         exts = [".mp3", ".mp4"]
         for file in os.listdir(save_dir):
             base, name = os.path.split(file)
@@ -93,9 +93,8 @@ class YT:
                 return True
         return False
 
-##fig SEARCH
     def get_related(self):
-        ''' returns the seach results '''
+        """returns the seach results"""
         if len(self.related) != 0:
             self.search.get_next_results()
         self.related = self.search.results
@@ -109,56 +108,53 @@ class YT:
         return titles
 
     def show_related(self):
-        ''' prints the search results '''
+        """prints the search results"""
         for r in self.get_related():
             print(r.title)
 
-###
     def get_dict(self):
-        ''' returns a dict of variables '''
+        """returns a dict of variables"""
         fa_dict = {
-                        "Title" : self.title,
-                        "URL" : self.url,
-                        "ID" : self.id,
-                        "Author" : self.author,
-                        "Channel URL" : self.channel_url,
-                        "Channel ID" : self.channel_id,
-                        "Length" : self.length,
-                        "Description" : self.description,
-                        "Keywords" : self.tags
-                        }
+            "Title": self.title,
+            "URL": self.url,
+            "ID": self.id,
+            "Author": self.author,
+            "Channel URL": self.channel_url,
+            "Channel ID": self.channel_id,
+            "Length": self.length,
+            "Description": self.description,
+            "Keywords": self.tags,
+        }
         return fa_dict
 
     def show_dict(self):
-        ''' prints the dictionary '''
-        data = json.dumps(self.get_dict(), indent = 2)
+        """prints the dictionary"""
+        data = json.dumps(self.get_dict(), indent=2)
         print(data)
 
-
-###
     def write_file(self):
-        ''' writes dict of video to json '''
+        """writes dict of video to json"""
         file = self.title + ".json"
         if os.path.isfile(file):
             return False
         with open(file, "w") as j:
-            data = json.dumps(self.get_dict(), indent = 2)
+            data = json.dumps(self.get_dict(), indent=2)
             j.write(data)
             j.close()
         return True
 
     def read_file(self):
-        ''' reads dict of video from json '''
+        """reads dict of video from json"""
         file = self.title + ".json"
         if os.path.isfile(file):
             with open(file, "r") as j:
                 infile = json.loads(j.read())
-                infile = json.dumps(infile, indent = 2)
+                infile = json.dumps(infile, indent=2)
                 j.close()
         return infile
 
-    def compare_json(self, infile = None):
-        ''' compare json to YT dict '''
+    def compare_json(self, infile=None):
+        """compare json to YT dict"""
         if infile is None:
             infile = self.read_file()
         file = self.title + ".json"
@@ -169,113 +165,123 @@ class YT:
         if not os.path.isfile(file):
             return False
 
-
-
-#
-#        PROPERTIES
-#    TUBE
+    # GETTERS
     @property
     def tube(self):
-        ''' the parent YouTube object '''
+        """the parent YouTube object"""
         return self._tube
+
+    @property
+    def title(self):
+        """Title of the video"""
+        return self._title
+
+    @property
+    def url(self):
+        """watch url of video"""
+        return self._url
+
+    @property
+    def id(self):
+        """YouTube ID of video"""
+        return self._id
+
+    @property
+    def author(self):
+        """channel name of video"""
+        return self._author
+
+    @property
+    def channel_url(self):
+        """url of video authors channel"""
+        return self._channel_url
+
+    @property
+    def channel_id(self):
+        """YouTube ID of the channel"""
+        return self._channel_id
+
+    @property
+    def length(self):
+        """length of video --in ms/60--"""
+        mins = self._length / 60
+        return mins
+
+    @property
+    def description(self):
+        """description of video"""
+        return self._description
+
+    @property
+    def tags(self):
+        """list of the tags/keywords for the video"""
+        return self._tags
+
+    @property
+    def related(self):
+        """list of Search(<video_title>) results"""
+        return self._related
+
+    # SETTERS
     @tube.setter
     def tube(self, new):
         self._tube = new
         self.init2()
-#    TITLE
-    @property
-    def title(self):
-        ''' Title of the video '''
-        return self._title
+
     @title.setter
     def title(self, new):
         self._title = new
-#    URL
-    @property
-    def url(self):
-        ''' watch url of video '''
-        return self._url
+
     @url.setter
     def url(self, new):
         self._url = new
-#    ID
-    @property
-    def id (self):
-        ''' YouTube ID of video '''
-        return self._id 
-    @id .setter
-    def id (self, new):
-        self._id  = new
-#    AUTHOR
-    @property
-    def author(self):
-        ''' channel name of video '''
-        return self._author
+
+    @id.setter
+    def id(self, new):
+        self._id = new
+
     @author.setter
     def author(self, new):
         self._author = new
-#    CHANNEL_URL
-    @property
-    def channel_url(self):
-        ''' url of video authors channel '''
-        return self._channel_url
+
     @channel_url.setter
     def channel_url(self, new):
         self._channel_url = new
-#    CHANNEL_ID
-    @property
-    def channel_id(self):
-        ''' YouTube ID of the channel '''
-        return self._channel_id
+
     @channel_id.setter
     def channel_id(self, new):
         self._channel_id = new
-#    LENGTH
-    @property
-    def length(self):
-        ''' length of video --in ms/60-- '''
-        mins = ( self._length / 60)
-        return mins
+
     @length.setter
     def length(self, new):
         self._length = new
-#    DESCRIPTION
-    @property
-    def description(self):
-        ''' description of video '''
-        return self._description
+
     @description.setter
     def description(self, new):
         self._description = new
-#    TAGS
-    @property
-    def tags(self):
-        ''' list of the tags/keywords for the video '''
-        return self._tags
+
     @tags.setter
     def tags(self, new):
         self._tags = new
-#    RELATED
-    @property
-    def related(self):
-        ''' list of Search(<video_title>) results '''
-        return self._related
+
     @related.setter
     def related(self, new):
         self._related = new
 
-
-#    MISC FUNCTIONS
     @staticmethod
     def track7():
-        ''' return YT instance with "Track 7b - Mind of Magick" video '''
+        """return YT instance with "Track 7b - Mind of Magick" video"""
         return YT(TRACK_7)
+##########
+##########
+##########
 
-#    END OF CLASS
 
-#
-#
-if __name__ == "__main__":
+
+
+###################################
+def test_main():
+    ''' function for testing ''' 
     yt = YT(TRACK_7)
     yt.show_dict()
     input()
@@ -288,5 +294,9 @@ if __name__ == "__main__":
         print("json 100% matched")
     if not yt.read_file():
         print("json doesn't match")
-        
     input()
+
+
+###    EOF    ###
+if __name__ == "__main__":
+    pass
