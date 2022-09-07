@@ -28,38 +28,49 @@ search_bottom = [sg.Button("Add", key = "btn_add"),sg.Text(""), sg.Button("Remov
 
 search_layout = [[sg.Frame("", search_top, element_justification = "Center", relief = sg.RELIEF_FLAT)],[sg.Frame("", search_bottom, element_justification = "Center", relief = sg.RELIEF_FLAT, expand_x = True)]]
 
-layout = [menu_bar,search_layout]
 
-# windows #
-win = sg.Window("dwYT", layout, element_justification = "Center", size = (900,400), finalize = True)
+zlayout = [menu_bar,[sg.Frame("",[],expand_x = True,expand_y=True, key = "main")]]
 
 
 # run #
 def run():
-    event, values = win.read()
-
+    win = sg.Window("dwYT", zlayout, element_justification = "Center", size = (900,400), finalize = True)
+    
     while True:
-
+        event, values = win.read()
 
         if event in ("Exit", sg.WINDOW_CLOSED):
             break
 
+        if event == "Search":
+            win["main"].update()
 
-        #search layout
+
         if event == "btn_clear":
+            win["search_results"].update(["EMPTY"])
             sg.popup_ok("Results Cleared")
             print("cleared results")
 
         if event == "btn_search":
-            print("search button")
+            if not values["search_input"] in ("", None):
+                inp = values["search_input"]
+                s = Search(inp)
+                converted = convert_list(s.results)
+                win["search_results"].update(converted)
 
         if event is not None:
             print("not None")
 
-    sys.exit()
+    return
+####
 
-
-
+def convert_list(in_list):
+    ret = []
+    for item in in_list:
+        tmp = YT(item)
+        ret.append(tmp)
+    return ret
+    
 
 if __name__ == "__main__":
-    run()
+    sg.main()
