@@ -1,0 +1,70 @@
+@property
+def title(self):
+	return self._title
+@title.setter
+def title(self, newtitle):
+	self._title = newtitle
+
+@property
+def url(self):
+	return self._url
+@url.setter
+def url(self, newurl):
+	self._url = newurl
+
+@property
+def thumbnail(self):
+	return self._thumbnail
+@thumbnail.setter
+def thumbnail(self, newthumbnail):
+	self._thumbnail = newthumbnail
+
+@property
+def video_id(self):
+	return self._video_id
+@video_id.setter
+def video_id(self, newvideo_id):
+	self._video_id = newvideo_id
+
+@property
+def length(self):
+	return self._length
+@length.setter
+def length(self, newlength):
+	self._length = newlength
+
+@property
+def author(self):
+	return self._author
+@author.setter
+def author(self, newauthor):
+	self._author = newauthor
+
+@property
+def channel_url(self):
+	return self._channel_url
+@channel_url.setter
+def channel_url(self, newchannel_url):
+	self._channel_url = newchannel_url
+
+@property
+def channel_id(self):
+	return self._channel_id
+@channel_id.setter
+def channel_id(self, newchannel_id):
+	self._channel_id = newchannel_id
+
+@property
+def views(self):
+	return self._views
+@views.setter
+def views(self, newviews):
+	self._views = newviews
+
+@property
+def desc(self):
+	return self._desc
+@desc.setter
+def desc(self, newdesc):
+	self._desc = newdesc
+
