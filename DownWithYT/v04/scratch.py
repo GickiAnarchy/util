@@ -16,3 +16,11 @@ self.views
 self.desc
 
 title,url,thumbnail,video_id,length,author,channel_url,channel_id,views,desc
+
+
+search YouTube
+create 
+create, edit, save, and load custom lists
+playlist handling
+download videos or audio
+

@@ -11,18 +11,18 @@ from pytube import YouTube, Search, Playlist
     
 '''
 
-T7 = "https://youtu.be/R44K3tUFh60"
+musicdir = os.path.join(os.path.dirname(__file__), "Downloads")
 
+T7 = "https://youtu.be/R44K3tUFh60"
+magick_pl = "https://youtube.com/playlist?list=PLXS7fy2pHgKch6L4xtvybDqxo4tVWAoKK"
+
+
+#######################################
 class aYouTube():
-    def __init__(self, yt = None):
+    def __init__(self, yt = ""):
         ''' aYT Initialization '''
-        if type(yt) == YouTube:
-            pass
-        elif type(yt) == str:
-            if yt.startswith("https"):
-                self.YouTube = YouTube(yt)
-        self.YouTube = yt
-        
+        self.YouTube = None
+
         self.title = ""
         self.url = ""
         self.thumbnail = None
@@ -33,13 +33,18 @@ class aYouTube():
         self.channel_id = None
         self.views = 0
         self.desc = ""
-        print(yt.isinstance())
+
+        if isinstance(yt, YouTube):
+            self.add_youtube(yt)
+        if isinstance(yt, str):
+            if yt.startswith("https"):
+                self.add_youtube(YouTube(yt))
 
         self.var_dict = {}
         self.var_list = [self.title,self.url,self.thumbnail,self.video_id,self.length,self.author,self.channel_url,self.channel_id,self.views,self.desc]
 
 
-#    CLI Display
+#    Overrides
     def __dict__(self):
         if len(self.var_dict.keys()) <= 0:
             self.var_dict = {
@@ -58,11 +63,14 @@ class aYouTube():
 
     def __repr__(self):
         return self.title
+    
+    def __str__(self):
+        return self.title
 
 
 #    Adding YouTube
     def add_youtube(self, yt):
-        yt = YouTube(yt)
+        self.YouTube = yt
         self.title = yt.title
         self.url = yt.watch_url
         self.thumbnail = yt.thumbnail_url
@@ -80,6 +88,41 @@ class aYouTube():
         self.YouTube.use_oauth = True
         self.YouTube.allow_oauth_cache = allow
 
+    def download_video(self, outdir = musicdir):
+        yt = self.YouTube
+        video = (
+            yt.streams.filter(progressive=True, file_extension="mp4")
+            .order_by("resolution")
+            .desc()
+            .first()
+            .download()
+        )
+        try:
+            out_file = video.download(output_path=outdir)
+        except Exception as e:
+            print(type(e))
+            print(e)
+            return False
+        base, ext = os.path.splitext(out_file)
+        new_file = base + ".mp4"
+        os.rename(out_file, new_file)
+        return True
+
+    def download_audio(self, outdir="."):
+        yt = self.tube
+        if self.does_exist():
+            return False
+        audio = yt.streams.get_audio_only()
+        try:
+            out_file = audio.download(output_path=outdir)
+        except Exception as e:
+            print(type(e))
+            print(e)
+            return False
+        base, ext = os.path.splitext(out_file)
+        new_file = base + ".mp3"
+        os.rename(out_file, new_file)
+        return True
 
 
 ##    PROPERTIES    ##
@@ -162,6 +205,34 @@ class aYouTube():
 
 
 
+#######################################
+
+
+#######################################
+list_dir = os.path.join(os.path.dirname(__file__), "lists")
+
+class YT_List():
+    def __init__(self):
+        self.filename = ""
+        self.customlist = []
+        self.length = 0
+    
+    def add_video(self, ayt: aYouTube):
+        t, i, a = ayt.title, ayt.id, ayt.author
+        for vid in self.customlist:
+            if t == vid.title and i == vid.id and a == vid.author:
+                print(f"{vid.title} already in list")
+                return False
+        self.customlist.append(ayt)
+
+
+    def update(self):
+        self.length = len(self.customlist)
+
+
+
+
+#######################################
 #    DEBUG VARS & FUNCS
 global fempty
 fempty: aYouTube = aYouTube()
@@ -178,60 +249,18 @@ def showdebug():
     for k in d.keys():
         v = d.get(k)
         print(f"{k}\t---\t{v}")
-    
-    
-    
 
 
+    
+#######################################
+#    Pre-Setup
+def presetup():
+    if not os.path.isdir(musicdir):
+        os.makedirs(musicdir)
+    if not os.path.isdir(list_dir):
+        os.makedirs(list_dir)
+    return
 
 
 if __name__ == "__main__":
-    fillEmpty()
-    showdebug()
-
-"""
-    def download_video(self, outdir=".'"):
-        yt = self.tube
-        video = (
-            yt.streams.filter(progressive=True, file_extension="mp4")
-            .order_by("resolution")
-            .desc()
-            .first()
-            .download()
-        )
-        try:
-            out_file = video.download(output_path=outdir)
-        except Exception as e:
-            print(type(e))
-            print(e)
-            return False
-        base, ext = os.path.splitext(out_file)
-        new_file = base + ".mp4"
-        os.rename(out_file, new_file)
-        return True
-
-    def download_audio(self, outdir="."):
-        yt = self.tube
-        if self.does_exist():
-            return False
-        audio = yt.streams.get_audio_only()
-        try:
-            out_file = audio.download(output_path=outdir)
-        except Exception as e:
-            print(type(e))
-            print(e)
-            return False
-        base, ext = os.path.splitext(out_file)
-        new_file = base + ".mp3"
-        os.rename(out_file, new_file)
-        return True
-
-    def does_exist(self, save_dir="."):
-        exts = [".mp3", ".mp4"]
-        for file in os.listdir(save_dir):
-            base, name = os.path.split(file)
-            if self.title in name:
-                print(f"{self.title} matches {name}")
-                return True
-        return False
-"""
+    presetup()
