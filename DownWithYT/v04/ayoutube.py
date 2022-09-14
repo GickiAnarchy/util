@@ -1,4 +1,5 @@
 import os
+import json
 from pytube import YouTube, Search, Playlist
 
 #PYTUBE WRAPPER FOR KIVY GUI
@@ -11,7 +12,7 @@ from pytube import YouTube, Search, Playlist
     
 '''
 
-musicdir = os.path.join(os.path.dirname(__file__), "Downloads")
+dl_dir = os.path.join(os.path.dirname(__file__), "Downloads")
 
 T7 = "https://youtu.be/R44K3tUFh60"
 magick_pl = "https://youtube.com/playlist?list=PLXS7fy2pHgKch6L4xtvybDqxo4tVWAoKK"
@@ -63,7 +64,8 @@ class aYouTube():
 
     def __repr__(self):
         return self.title
-    
+
+
     def __str__(self):
         return self.title
 
@@ -88,15 +90,15 @@ class aYouTube():
         self.YouTube.use_oauth = True
         self.YouTube.allow_oauth_cache = allow
 
-    def download_video(self, outdir = musicdir):
+
+    def download_video(self, outdir = dl_dir):
         yt = self.YouTube
         video = (
             yt.streams.filter(progressive=True, file_extension="mp4")
             .order_by("resolution")
             .desc()
             .first()
-            .download()
-        )
+            .download())
         try:
             out_file = video.download(output_path=outdir)
         except Exception as e:
@@ -108,10 +110,9 @@ class aYouTube():
         os.rename(out_file, new_file)
         return True
 
-    def download_audio(self, outdir="."):
-        yt = self.tube
-        if self.does_exist():
-            return False
+
+    def download_audio(self, outdir = dl_dir):
+        yt = self.YouTube
         audio = yt.streams.get_audio_only()
         try:
             out_file = audio.download(output_path=outdir)
@@ -123,6 +124,18 @@ class aYouTube():
         new_file = base + ".mp3"
         os.rename(out_file, new_file)
         return True
+
+
+    def read_downloads(self):
+        audio_files = []
+        video_files = []
+        for f in os.listdir(dl_dir):
+            if f.endswith(".mp3"):
+                audio_files.append(f)
+            if f.endswith(".mp4"):
+                video_files.append(f)
+        return audio_files.extend(video_files)
+
 
 
 ##    PROPERTIES    ##
@@ -213,22 +226,51 @@ list_dir = os.path.join(os.path.dirname(__file__), "lists")
 
 class YT_List():
     def __init__(self):
-        self.filename = ""
+        self.listname = ""
         self.customlist = []
         self.length = 0
-    
-    def add_video(self, ayt: aYouTube):
+
+
+    def add(self, ayt: aYouTube):
         t, i, a = ayt.title, ayt.id, ayt.author
         for vid in self.customlist:
             if t == vid.title and i == vid.id and a == vid.author:
                 print(f"{vid.title} already in list")
                 return False
         self.customlist.append(ayt)
+        self.update()
+
+
+    def name_list(self, newname):
+        if newname in (None, ""):
+            return False
+        self.listname = newname
+        return True
+
+
+    def save_list(self):
+        if self.listname == "":
+            return False
+        else:
+            with open(self.listname + ".txt", "w") as file:
+                for item in self.customlist:
+                    file.write(item.url)
+
+
+    def load_list(self, lfile):
+        pass
 
 
     def update(self):
         self.length = len(self.customlist)
 
+
+    @property
+    def listname(self):
+        return self._listname
+    @listname.setter
+    def listname(self, new_listname):
+        self._listname = new_listname
 
 
 
@@ -255,8 +297,8 @@ def showdebug():
 #######################################
 #    Pre-Setup
 def presetup():
-    if not os.path.isdir(musicdir):
-        os.makedirs(musicdir)
+    if not os.path.isdir(dl_dir):
+        os.makedirs(dl_dir)
     if not os.path.isdir(list_dir):
         os.makedirs(list_dir)
     return
