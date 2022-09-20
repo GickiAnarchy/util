@@ -2,15 +2,9 @@
 #filename: yt.kv
 
 
-<YTDD>:
-    <YTButton@Button>:
-        on_release: root.select(self.text)
-
-
 <SearchScreen>:
     txt_in:txt_in
-    yt_dd:yt_dd
-
+    
     cols:1
     size_hint:None,None
     size:275,400
@@ -27,16 +21,9 @@
         text:"fatheranarchy"
         size_hint:None,None
         size:250,30
-    BoxLayout:
-        size_hint:None,None
-        size:250,170
-        Button:
-            id:btndd
-            on_parent: yt_dd.dismiss()
-            on_release: yt_dd.open(self)
-        YTDD:
-            id:root.parent.yt_dd
-            on_select:btndd.text = f"{args[1]}"
+    Spinner:
+        id:res_spin
+        values:root.res_list
     Button:
         text:"Search"
         size_hint:None,None

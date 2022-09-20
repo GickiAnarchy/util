@@ -10,56 +10,21 @@ from kivy.uix.boxlayout import BoxLayout
 from kivy.uix.widget import Widget
 from kivy.uix.screenmanager import ScreenManager, Screen
 from kivy.uix.dropdown import DropDown
+from kivy.uix.spinner import Spinner
 from kivy.properties import ObjectProperty
 from kivy.properties import ListProperty
 from pytube import Search, YouTube
 from ayoutube import aYouTube
 
-class YTDD(DropDown):
-    a_list = ListProperty(None)
-
-    def __init__(self, **kwargs):
-        super(YTDD, self).__init__(**kwargs)
-    
-    def on_a_list(self):
-        for a in self.a_list:
-            self.add_widget(a)
-        
-
-    def add_list(self, lst):
-        alist = []
-        for item in lst:
-            appendme = ""
-            if type(item) == aYouTube:
-                appendme = item.title
-            else:
-                appendme = "__"
-            btn = YTButton(text = appendme)
-            alist.append(btn)
-        self.a_list = alist
-
-
-    @property
-    def a_list(self):
-        return self._a_list
-    @a_list.setter
-    def a_list(self, newlist):
-        self._a_list = newlist
-
-
 
 class SearchScreen(GridLayout):
     txt_in = ObjectProperty(None)
-    results_label = ObjectProperty(None)
-    yt_dd = ObjectProperty()
-#    results = ListProperty(["Nothing","Here"])
-
+    res_list = ListProperty(None)
 
     def __init__(self, **kwargs):
         super(SearchScreen, self).__init__(**kwargs)
-        #self.yt_dd = YTDD()
         self.results = []
-
+        self.res_list = []
 
     def do_search(self):
         user_input = self.txt_in.text
@@ -71,8 +36,17 @@ class SearchScreen(GridLayout):
         for r in res:
             tmp = aYouTube(r)
             self.results.append(tmp)
-            print(tmp.title)
-        self.yt_dd.add_list(self.results)
+        self.res_list = self.results
+
+    @property
+    def results(self):
+        return self._results
+    @results.setter
+    def results(self, newres):
+        self._results = newres
+
+
+
 
 
 class YTApp(App):
