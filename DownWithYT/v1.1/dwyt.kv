@@ -2,66 +2,6 @@
 #filename: dwyt.kv
 #relative_filename:dwyt_app.py
 
-
-<ScreenButtons>:
-    Button:
-        id:home_button
-        text:"Home"
-    Button:
-        id:file_button
-        text:"File"
-
-
-<HomeScreen>:
-    size_hint:None,None
-    size:600,400
-    FloatLayout:
-        AnchorLayout:
-            size_hint:None,None
-            size:root.size
-            anchor_x:"center"
-            BoxLayout:
-                orientation:'vertical'
-                Label:
-                    text:"Down with\nYouTube"
-                    font_size:68
-                    color:(0,0,0,1)
-                    halign: "center"
-                    pos_hint:{"top":0.4}
-                Image:
-                    id:image
-                    source:"down_logo.png"
-
-
-<FileScreen>:
-    size_hint:None,None
-    size:600,400
-    FloatLayout:
-        Label:
-            text:"Save/Load Lists"
-            halign:"center"
-            valign:"top"
-            font_size:36
-            size_hint:None, None
-            size_y: 75
-        GridLayout:
-            size_hint:None,None
-            size:600,325
-            cols:3
-            canvas.before:
-                Color:
-                    rgba:1,0,0,1
-                Rectangle:
-                    pos:self.pos
-                    size:self.size
-            Label:
-                text:"1"
-            Label:
-                text:"2"
-            Label:
-                text:"3"
-
-
 <YTScreenManager>:
     size_hint:None,None
     size:600,400
