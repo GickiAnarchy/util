@@ -1,0 +1,74 @@
+#:kivy 2.0.0
+#filename: dwyt.kv
+#relative_filename:dwyt_app.py
+
+<YTScreenManager>:
+    size_hint:None,None
+    size:600,400
+#    canvas.before:
+#        Color:
+#            rgba:0.4, 0, 0.7, 0.8
+#        Rectangle:
+#            pos:self.pos
+#            size:self.size
+
+
+<HomeScreen>:
+    name:"HomeScreen"
+    size_hint:None,None
+    size:600,400
+    FloatLayout:
+        AnchorLayout:
+            size_hint:None,None
+            size:root.size
+            anchor_x:"center"
+            BoxLayout:
+                orientation:'vertical'
+                Label:
+                    text:"Down with\nYouTube"
+                    font_size:68
+                    color:(0,0,0,1)
+                    halign: "center"
+                    pos_hint:{"top":0.4}
+                Image:
+                    id:image
+                    source:"down_logo.png"
+
+
+<FileScreen>:
+    name:"FileScreen"
+    BoxLayout:
+        size_hint:1,1
+        orientation:"vertical"
+        Label:
+            pos_hint:{'top':1}
+            size_hint:1,None
+            size_y:50
+            text:"Save/Load Lists"
+            font_size:36
+        GridLayout:
+            cols:2
+            BoxLayout:
+                orientation:"vertical"
+                size_hint:None,None
+                size:120,200
+                Button:
+                    id:load_btn
+                    text:"Load"
+                    size_hint:None,None
+                    size:100,50
+                Button:
+                    id:save_btn
+                    text:"Save"
+                    size_hint:None,None
+                    size:100,50
+                Button:
+                    id:read_btn
+                    text:"Scan"
+                    size_hint:None,None
+                    size:100,50
+            Label:
+                id:list_label
+                text:"list label"
+
+

@@ -16,7 +16,6 @@ from kivy.uix.textinput import TextInput
 from kivy.uix.button import Button
 from kivy.uix.label import Label
 from kivy.uix.image import Image
-from kivy.uix.recycleview import RecycleView
 from kivy.clock import Clock
 from kivy.uix.screenmanager import Screen, ScreenManager
 from kivy.properties import ObjectProperty, StringProperty, NumericProperty, BooleanProperty, ListProperty
@@ -29,11 +28,11 @@ class YTScreenManager(ScreenManager):
 
     def __init__(self, **kwargs):
         super(YTScreenManager, self).__init__(**kwargs)
-
-        self.home_screen = HomeScreen()
-        self.add_widget(self.home_screen)
         self.file_screen = FileScreen()
         self.add_widget(self.file_screen)
+        self.home_screen = HomeScreen()
+        self.add_widget(self.home_screen)
+
 
 
 class HomeScreen(Screen):
@@ -86,31 +85,6 @@ class FileScreen(Screen):
         return yt_list
 
 
-class RV(RecycleView):
-    data_list = ListProperty()
-
-    def __init__(self, **kwargs):
-        super().__init__(**kwargs)
-        self.data_list = [{"text":str(i)} for i in range(2)]
-
-    def add(self, alist):
-        self.data_list = [{"text":f"{item.title}"} for item in alist]
-        self.refresh_from_data()
-
-
-class YT_List(FloatLayout):
-
-    def __init__(self, **kwargs):
-        super(YT_List, self).__init__(**kwargs)
-        #self.ids.search_btn.bind(on_press = self.doSearch)
-
-    def doSearch(self):
-        txt = self.ids.txt_input.text
-        if txt in ("", None, "..."):
-            return False
-        search = Search(txt)
-        lst = search.results
-        self.ids.rv.add(lst)
 
 
 ###
@@ -118,7 +92,7 @@ class YT_List(FloatLayout):
 ###
 class DWYTApp(App):
     def build(self):
-        return YT_List()
+        return YTScreenManager()
 
 
 if __name__ == "__main__":

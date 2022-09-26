@@ -11,3 +11,56 @@
         Rectangle:
             pos:self.pos
             size:self.size
+
+<YTLabel@Label>:
+    halign:"right"
+
+
+<RV>:
+    viewclass:"YTLabel"
+    data:self.data_list
+    orientation: "vertical"
+    spacing: 200
+    padding:10, 10
+    RecycleBoxLayout:
+        color:(0, 0.7, 0.4, 0.8)
+        default_size: None, dp(56)
+        default_size_hint: 0.4, None
+        size_hint_y: None
+        height: self.minimum_height
+        size_hint_x:None
+        width:self.width
+        orientation: 'vertical'
+
+
+<YT_List>:
+    size_hint:None,None
+    size:600,400
+    canvas.before:
+        Color:
+            rgba:0.4, 0, 0.7, 0.8
+        Rectangle:
+            pos:self.pos
+            size:self.size
+    BoxLayout:
+        size_hint:None,None
+        size:root.size
+        BoxLayout:
+            orientation:"vertical"
+            size_hint:0.25,1
+            TextInput:
+                id:txt_input
+                text:"fatheranarchy"
+                size_hint: None, None
+                height: self.minimum_height
+                width: 150
+            Button:
+                id:search_btn
+                text: "Search"
+                on_press:root.doSearch()
+                size_hint: None,None
+                size: 100,50
+        BoxLayout:
+            size_hint:0.75,1
+            RV:
+                id:rv
