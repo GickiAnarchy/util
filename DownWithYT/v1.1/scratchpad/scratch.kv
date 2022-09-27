@@ -1,0 +1,44 @@
+#:kivy 2.0.0
+
+<YLabel@Label>:
+    font_size:12
+
+<YT_Widget>:
+    FloatLayout:
+        size:300,50
+#        canvas.before:
+#            Color:
+#                rgba: (0.1, 0.5, 0.7, 1)
+#            Rectangle:
+#                size:self.size
+#                pos:self.pos
+        BoxLayout:
+            yt_btn_img:yt_btn_img
+            Button:
+                id:yt_btn
+                size_hint: 0.09, 1.0
+                text:"*"
+                on_press:root.get_yt()
+                Image:
+                    id:yt_btn_img
+                    
+                    size:self.parent.width, self.parent.height
+                    source:"images/grn_btn.png"
+                    #center_x:self.parent.center_x
+                    #center_y:self.parent.center_y
+            GridLayout:
+                rows:2
+                size_hint: 0.91, 1.0
+                BoxLayout:
+                    size_hint: 0.91, 0.5
+                    YLabel:
+                        id:yt_title
+                        text:"title"
+                BoxLayout:
+                    size_hint: 0.91, 0.5
+                    YLabel:
+                        id:yt_author
+                        text:"author"
+                    YLabel:
+                        id:yt_length
+                        text:"None"
