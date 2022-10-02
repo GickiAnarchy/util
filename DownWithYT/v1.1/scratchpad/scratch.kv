@@ -3,42 +3,76 @@
 <YLabel@Label>:
     font_size:12
 
+
 <YT_Widget>:
-    FloatLayout:
-        size:300,50
-#        canvas.before:
-#            Color:
-#                rgba: (0.1, 0.5, 0.7, 1)
-#            Rectangle:
-#                size:self.size
-#                pos:self.pos
+    size_hint:1,1
+    Button:
+        id:yt_btn
+        size_hint: 0.09, 1.0
+        text:""
+        background_normal: "images/grn_btn.png"
+        background_down: "images/red_btn.png"
+        on_press:root.get_yt()
+    GridLayout:
+        halign:"right"
+        rows:2
+        size_hint: 0.91, 1.0
         BoxLayout:
-            yt_btn_img:yt_btn_img
-            Button:
-                id:yt_btn
-                size_hint: 0.09, 1.0
-                text:"*"
-                on_press:root.get_yt()
-                Image:
-                    id:yt_btn_img
-                    
-                    size:self.parent.width, self.parent.height
-                    source:"images/grn_btn.png"
-                    #center_x:self.parent.center_x
-                    #center_y:self.parent.center_y
-            GridLayout:
-                rows:2
-                size_hint: 0.91, 1.0
-                BoxLayout:
-                    size_hint: 0.91, 0.5
-                    YLabel:
-                        id:yt_title
-                        text:"title"
-                BoxLayout:
-                    size_hint: 0.91, 0.5
-                    YLabel:
-                        id:yt_author
-                        text:"author"
-                    YLabel:
-                        id:yt_length
-                        text:"None"
+            size_hint: 0.91, 0.5
+            YLabel:
+                id:yt_title
+                text:root.title
+        BoxLayout:
+            size_hint: 0.91, 0.5
+            YLabel:
+                id:yt_author
+                text:root.author
+            YLabel:
+                id:yt_length
+                text:root.length
+    
+
+<YT_List>:
+    viewclass:"YT_Widget"
+    data:self.yt_data
+    scroll_type: ['bars', 'content']
+    orientation: "vertical"
+    spacing: 40
+    padding:10, 10
+    RecycleBoxLayout:
+        cols:1
+        halign:"center"
+        default_size_hint: 0.4, None
+        default_size: None, dp(56)
+        size_hint_y: None
+        height: self.minimum_height
+        orientation: 'vertical'
+
+
+<MainBox>:
+    orientation:"vertical"
+    halign:"center"
+    size_hint:None,None
+    size:300,550
+    canvas.before:
+        Color:
+            rgba: (0.2,0.2,0.4,1)
+        Rectangle:
+            size:self.size
+            pos:self.pos
+    GridLayout:
+        rows:1
+        cols:2
+        size_hint:None,0.25
+        TextInput:
+            id:search_in
+            size_hint:None,None
+            size:dp(150),dp(30)
+        Button:
+            id:butt
+            text:"search"
+            on_press:root.do_it()
+            size_hint:(None,None)
+            size: 75,50
+    YT_List:
+        id:yts
