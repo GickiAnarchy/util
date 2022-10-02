@@ -1,0 +1,69 @@
+[INFO   ] Logger: Record log in /storage/emulated/0/code/util/DownWithYT/v1.1/scratchpad/.kivy/logs/kivy_22-09-29_21.txt
+[INFO   ] Kivy: v2.0.0
+[INFO   ] Kivy: Installed at "/data/user/0/ru.iiec.pydroid3/files/arm-linux-androideabi/lib/python3.9/site-packages/kivy/__init__.py"
+[INFO   ] Python: v3.9.7 (default, Oct  9 2021, 08:02:40) 
+[GCC 11.1.0]
+[INFO   ] Python: Interpreter at "/data/user/0/ru.iiec.pydroid3/files/arm-linux-androideabi/bin/python3"
+[INFO   ] Factory: 186 symbols loaded
+[INFO   ] Image: Providers: img_tex, img_dds, img_sdl2, img_pil (img_ffpyplayer ignored)
+[INFO   ] Window: Provider: sdl2
+[INFO   ] GL: Using the "OpenGL ES 2" graphics system
+[INFO   ] GL: Backend used <sdl2>
+[INFO   ] GL: OpenGL version <b'OpenGL ES 3.2 build 1.9@4893595'>
+[INFO   ] GL: OpenGL vendor <b'Imagination Technologies'>
+[INFO   ] GL: OpenGL renderer <b'PowerVR Rogue GE8300'>
+[INFO   ] GL: OpenGL parsed version: 3, 2
+[INFO   ] GL: Texture max size <4096>
+[INFO   ] GL: Texture max units <16>
+[INFO   ] Window: auto add sdl2 input provider
+[INFO   ] Window: virtual keyboard not allowed, single mode, not docked
+[INFO   ] Text: Provider: sdl2
+[INFO   ] Start: Started App
+[WARNING] stderr: Traceback (most recent call last):
+[WARNING] stderr:   File "/data/user/0/ru.iiec.pydroid3/files/arm-linux-androideabi/lib/python3.9/site-packages/kivy/lang/builder.py", line 701, in _apply_rule
+[WARNING] stderr:     setattr(widget_set, key, value)
+[WARNING] stderr:   File "kivy/weakproxy.pyx", line 35, in kivy.weakproxy.WeakProxy.__setattr__
+[WARNING] stderr:   File "kivy/properties.pyx", line 498, in kivy.properties.Property.__set__
+[WARNING] stderr:   File "kivy/properties.pyx", line 1354, in kivy.properties.ReferenceListProperty.set
+[WARNING] stderr:   File "kivy/properties.pyx", line 1338, in kivy.properties.ReferenceListProperty.convert
+[WARNING] stderr: ValueError: Button.pos must be a list or a tuple
+[WARNING] stderr: 
+[WARNING] stderr: During handling of the above exception, another exception occurred:
+[WARNING] stderr: 
+[WARNING] stderr: Traceback (most recent call last):
+[WARNING] stderr:   File "/storage/emulated/0/code/util/DownWithYT/v1.1/scratchpad/scratchapp.py", line 93, in <module>
+[WARNING] stderr:     scr.run()
+[WARNING] stderr:   File "/data/user/0/ru.iiec.pydroid3/files/arm-linux-androideabi/lib/python3.9/site-packages/kivy/app.py", line 949, in run
+[WARNING] stderr:     self._run_prepare()
+[WARNING] stderr:   File "/data/user/0/ru.iiec.pydroid3/files/arm-linux-androideabi/lib/python3.9/site-packages/kivy/app.py", line 919, in _run_prepare
+[WARNING] stderr:     root = self.build()
+[WARNING] stderr:   File "/storage/emulated/0/code/util/DownWithYT/v1.1/scratchpad/scratchapp.py", line 88, in build
+[WARNING] stderr:     return MainBox()
+[WARNING] stderr:   File "/data/user/0/ru.iiec.pydroid3/files/arm-linux-androideabi/lib/python3.9/site-packages/kivy/uix/boxlayout.py", line 145, in __init__
+[WARNING] stderr:     super(BoxLayout, self).__init__(**kwargs)
+[WARNING] stderr:   File "/data/user/0/ru.iiec.pydroid3/files/arm-linux-androideabi/lib/python3.9/site-packages/kivy/uix/layout.py", line 76, in __init__
+[WARNING] stderr:     super(Layout, self).__init__(**kwargs)
+[WARNING] stderr:   File "/data/user/0/ru.iiec.pydroid3/files/arm-linux-androideabi/lib/python3.9/site-packages/kivy/uix/widget.py", line 359, in __init__
+[WARNING] stderr:     self.apply_class_lang_rules(
+[WARNING] stderr:   File "/data/user/0/ru.iiec.pydroid3/files/arm-linux-androideabi/lib/python3.9/site-packages/kivy/uix/widget.py", line 463, in apply_class_lang_rules
+[WARNING] stderr:     Builder.apply(
+[WARNING] stderr:   File "/data/user/0/ru.iiec.pydroid3/files/arm-linux-androideabi/lib/python3.9/site-packages/kivy/lang/builder.py", line 541, in apply
+[WARNING] stderr:     self._apply_rule(
+[WARNING] stderr:   File "/data/user/0/ru.iiec.pydroid3/files/arm-linux-androideabi/lib/python3.9/site-packages/kivy/lang/builder.py", line 710, in _apply_rule
+[WARNING] stderr:     raise BuilderException(rule.ctx, rule.line,
+[WARNING] stderr: kivy.lang.builder.BuilderException: Parser: File "/storage/emulated/0/code/util/DownWithYT/v1.1/scratchpad/scratch.kv", line 69:
+[WARNING] stderr: ...
+[WARNING] stderr:      67:        halign:"center"
+[WARNING] stderr:      68:        pos_hint:{"x":None, "y":None}
+[WARNING] stderr: >>   69:        pos:{"top":self.height-5}
+[WARNING] stderr:      70:    YT_List:
+[WARNING] stderr:      71:        id:yts
+[WARNING] stderr: ...
+[WARNING] stderr: ValueError: Button.pos must be a list or a tuple
+[WARNING] stderr:   File "/data/user/0/ru.iiec.pydroid3/files/arm-linux-androideabi/lib/python3.9/site-packages/kivy/lang/builder.py", line 701, in _apply_rule
+[WARNING] stderr:     setattr(widget_set, key, value)
+[WARNING] stderr:   File "kivy/weakproxy.pyx", line 35, in kivy.weakproxy.WeakProxy.__setattr__
+[WARNING] stderr:   File "kivy/properties.pyx", line 498, in kivy.properties.Property.__set__
+[WARNING] stderr:   File "kivy/properties.pyx", line 1354, in kivy.properties.ReferenceListProperty.set
+[WARNING] stderr:   File "kivy/properties.pyx", line 1338, in kivy.properties.ReferenceListProperty.convert
+[WARNING] stderr: 
