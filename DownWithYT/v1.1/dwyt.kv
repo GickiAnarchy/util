@@ -5,14 +5,17 @@
 
 
 <YT_Widget>:
-    size_hint:1,1
-    Button:
-        id:yt_btn
-        size_hint: 0.09, 1.0
-        text:""
-        background_normal: "images/grn_btn.png"
-        background_down: "images/red_btn.png"
-        on_press:root.dl_this()
+    #size_hint:1,1
+    AnchorLayout:
+        anchor_x:"left"
+        size_hint:0.09,1.0
+        Button:
+            id:yt_btn
+            size_hint: 0.09, 1.0
+            text:""
+            background_normal: "images/grn_btn.png"
+            background_down: "images/red_btn.png"
+            on_press:root.dl_this()
     GridLayout:
         halign:"right"
         rows:2
@@ -42,7 +45,7 @@
     RecycleBoxLayout:
         cols:1
         halign:"center"
-        default_size_hint: 0.4, None
+        default_size_hint: 0.6, None
         default_size: None, dp(56)
         size_hint_y: None
         height: self.minimum_height
@@ -53,7 +56,7 @@
     orientation:"vertical"
     halign:"center"
     size_hint:None,None
-    size:300,550
+    size:350,500
     canvas.before:
         Color:
             rgba: (0.2,0.2,0.4,1)
