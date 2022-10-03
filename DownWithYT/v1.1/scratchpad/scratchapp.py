@@ -16,6 +16,7 @@ from kivy.uix.recycleboxlayout import RecycleBoxLayout
 from kivy.properties import ObjectProperty, StringProperty,ListProperty
 from kivy.logger import Logger
 from kivy.config import Config
+from ayoutube import aYouTube
 
 Config.set('graphics', 'resizable', True)
 
@@ -38,7 +39,8 @@ class YT_Widget(BoxLayout):
     def get_yt(self):
         if self.url != None:
             yt = YouTube(self.url)
-            return yt
+            ayt = aYouTube(yt)
+            return ayt
 
 
 ##    ##    ##    ##    ##    ##    ##    ##    ##    ##    ##    ##

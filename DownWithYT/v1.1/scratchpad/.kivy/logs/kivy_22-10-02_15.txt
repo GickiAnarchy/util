@@ -1,0 +1,83 @@
+[INFO   ] Logger: Record log in /storage/emulated/0/code/util/DownWithYT/v1.1/scratchpad/.kivy/logs/kivy_22-10-02_15.txt
+[INFO   ] Kivy: v2.0.0
+[INFO   ] Kivy: Installed at "/data/user/0/ru.iiec.pydroid3/files/arm-linux-androideabi/lib/python3.9/site-packages/kivy/__init__.py"
+[INFO   ] Python: v3.9.7 (default, Oct  9 2021, 08:02:40) 
+[GCC 11.1.0]
+[INFO   ] Python: Interpreter at "/data/user/0/ru.iiec.pydroid3/files/arm-linux-androideabi/bin/python3"
+[INFO   ] Factory: 186 symbols loaded
+[INFO   ] Image: Providers: img_tex, img_dds, img_sdl2, img_pil (img_ffpyplayer ignored)
+[INFO   ] Window: Provider: sdl2
+[INFO   ] GL: Using the "OpenGL ES 2" graphics system
+[INFO   ] GL: Backend used <sdl2>
+[INFO   ] GL: OpenGL version <b'OpenGL ES 3.2 build 1.9@4893595'>
+[INFO   ] GL: OpenGL vendor <b'Imagination Technologies'>
+[INFO   ] GL: OpenGL renderer <b'PowerVR Rogue GE8300'>
+[INFO   ] GL: OpenGL parsed version: 3, 2
+[INFO   ] GL: Texture max size <4096>
+[INFO   ] GL: Texture max units <16>
+[INFO   ] Window: auto add sdl2 input provider
+[INFO   ] Window: virtual keyboard not allowed, single mode, not docked
+[INFO   ] Text: Provider: sdl2
+[INFO   ] Start: Started App
+[WARNING] Base: Unknown <android> provider
+[INFO   ] Base: Start application main loop
+[INFO   ] GL: NPOT texture support is available
+[INFO   ] USE: YT_Widget
+[INFO   ] USE: YT_Widget
+[INFO   ] USE: YT_Widget
+[INFO   ] USE: YT_Widget
+[INFO   ] USE: YT_Widget
+[INFO   ] USE: YT_Widget
+[INFO   ] USE: YT_Widget
+[INFO   ] USE: YT_Widget
+[INFO   ] USE: YT_Widget
+[INFO   ] USE: YT_Widget
+[WARNING] <__main__.YT_Widget object at 0x8ae8d610> have no cols or rows set, layout is not triggered.
+[WARNING] <__main__.YT_Widget object at 0x8ae8d2c8> have no cols or rows set, layout is not triggered.
+[WARNING] <__main__.YT_Widget object at 0x8ae8df78> have no cols or rows set, layout is not triggered.
+[WARNING] <__main__.YT_Widget object at 0x8ae8dc68> have no cols or rows set, layout is not triggered.
+[WARNING] <__main__.YT_Widget object at 0x8ae8d958> have no cols or rows set, layout is not triggered.
+[WARNING] <__main__.YT_Widget object at 0x8bb91220> have no cols or rows set, layout is not triggered.
+[WARNING] <__main__.YT_Widget object at 0x8bb913e0> have no cols or rows set, layout is not triggered.
+[WARNING] <__main__.YT_Widget object at 0x8bb91530> have no cols or rows set, layout is not triggered.
+[WARNING] <__main__.YT_Widget object at 0x8bb91bc0> have no cols or rows set, layout is not triggered.
+[WARNING] <__main__.YT_Widget object at 0x8bb91d80> have no cols or rows set, layout is not triggered.
+[WARNING] <__main__.YT_Widget object at 0x8bb91d80> have no cols or rows set, layout is not triggered.
+[WARNING] <__main__.YT_Widget object at 0x8bb91bc0> have no cols or rows set, layout is not triggered.
+[WARNING] <__main__.YT_Widget object at 0x8bb91530> have no cols or rows set, layout is not triggered.
+[WARNING] <__main__.YT_Widget object at 0x8bb913e0> have no cols or rows set, layout is not triggered.
+[WARNING] <__main__.YT_Widget object at 0x8bb91220> have no cols or rows set, layout is not triggered.
+[WARNING] <__main__.YT_Widget object at 0x8ae8d958> have no cols or rows set, layout is not triggered.
+[WARNING] <__main__.YT_Widget object at 0x8ae8dc68> have no cols or rows set, layout is not triggered.
+[WARNING] <__main__.YT_Widget object at 0x8ae8df78> have no cols or rows set, layout is not triggered.
+[WARNING] <__main__.YT_Widget object at 0x8ae8d2c8> have no cols or rows set, layout is not triggered.
+[WARNING] <__main__.YT_Widget object at 0x8ae8d610> have no cols or rows set, layout is not triggered.
+[WARNING] <__main__.YT_Widget object at 0x8ae8d610> have no cols or rows set, layout is not triggered.
+[WARNING] <__main__.YT_Widget object at 0x8ae8d2c8> have no cols or rows set, layout is not triggered.
+[WARNING] <__main__.YT_Widget object at 0x8ae8df78> have no cols or rows set, layout is not triggered.
+[WARNING] <__main__.YT_Widget object at 0x8ae8dc68> have no cols or rows set, layout is not triggered.
+[WARNING] <__main__.YT_Widget object at 0x8ae8d958> have no cols or rows set, layout is not triggered.
+[WARNING] <__main__.YT_Widget object at 0x8bb91220> have no cols or rows set, layout is not triggered.
+[WARNING] <__main__.YT_Widget object at 0x8bb913e0> have no cols or rows set, layout is not triggered.
+[WARNING] <__main__.YT_Widget object at 0x8bb91530> have no cols or rows set, layout is not triggered.
+[WARNING] <__main__.YT_Widget object at 0x8bb91bc0> have no cols or rows set, layout is not triggered.
+[WARNING] <__main__.YT_Widget object at 0x8bb91d80> have no cols or rows set, layout is not triggered.
+[INFO   ] USE: YT_Widget
+[WARNING] <__main__.YT_Widget object at 0x8bb91bf8> have no cols or rows set, layout is not triggered.
+[WARNING] <__main__.YT_Widget object at 0x8ae8d610> have no cols or rows set, layout is not triggered.
+[INFO   ] USE: YT_Widget
+[WARNING] <__main__.YT_Widget object at 0x8bb00060> have no cols or rows set, layout is not triggered.
+[WARNING] <__main__.YT_Widget object at 0x8ae8d2c8> have no cols or rows set, layout is not triggered.
+[WARNING] <__main__.YT_Widget object at 0x8ae8df78> have no cols or rows set, layout is not triggered.
+[WARNING] <__main__.YT_Widget object at 0x8ae8d610> have no cols or rows set, layout is not triggered.
+[WARNING] <__main__.YT_Widget object at 0x8ae8dc68> have no cols or rows set, layout is not triggered.
+[WARNING] <__main__.YT_Widget object at 0x8ae8df78> have no cols or rows set, layout is not triggered.
+[WARNING] <__main__.YT_Widget object at 0x8ae8d958> have no cols or rows set, layout is not triggered.
+[WARNING] <__main__.YT_Widget object at 0x8ae8dc68> have no cols or rows set, layout is not triggered.
+[WARNING] <__main__.YT_Widget object at 0x8ae8d958> have no cols or rows set, layout is not triggered.
+[WARNING] <__main__.YT_Widget object at 0x8bb91220> have no cols or rows set, layout is not triggered.
+[WARNING] <__main__.YT_Widget object at 0x8bb91220> have no cols or rows set, layout is not triggered.
+[WARNING] <__main__.YT_Widget object at 0x8bb913e0> have no cols or rows set, layout is not triggered.
+[WARNING] <__main__.YT_Widget object at 0x8bb913e0> have no cols or rows set, layout is not triggered.
+[WARNING] <__main__.YT_Widget object at 0x8bb91530> have no cols or rows set, layout is not triggered.
+[INFO   ] Base: Leaving application in progress...
