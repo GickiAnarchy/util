@@ -1,4 +1,4 @@
-[INFO   ] Logger: Record log in /storage/emulated/0/code/util/DownWithYT/v1.1/.kivy/logs/kivy_22-09-26_119.txt
+[INFO   ] Logger: Record log in /storage/emulated/0/code/util/DownWithYT/v1.1/.kivy/logs/kivy_22-10-03_2.txt
 [INFO   ] Kivy: v2.0.0
 [INFO   ] Kivy: Installed at "/data/user/0/ru.iiec.pydroid3/files/arm-linux-androideabi/lib/python3.9/site-packages/kivy/__init__.py"
 [INFO   ] Python: v3.9.7 (default, Oct  9 2021, 08:02:40) 
@@ -19,8 +19,8 @@
 [INFO   ] Window: virtual keyboard not allowed, single mode, not docked
 [INFO   ] Text: Provider: sdl2
 [WARNING] stderr: Traceback (most recent call last):
-[WARNING] stderr:   File "/storage/emulated/0/code/util/DownWithYT/v1.1/dwytapp.py", line 40, in <module>
-[WARNING] stderr:     DWYTApp().run()
+[WARNING] stderr:   File "/storage/emulated/0/code/util/DownWithYT/v1.1/dwytapp.py", line 101, in <module>
+[WARNING] stderr:     scr.run()
 [WARNING] stderr:   File "/data/user/0/ru.iiec.pydroid3/files/arm-linux-androideabi/lib/python3.9/site-packages/kivy/app.py", line 949, in run
 [WARNING] stderr:     self._run_prepare()
 [WARNING] stderr:   File "/data/user/0/ru.iiec.pydroid3/files/arm-linux-androideabi/lib/python3.9/site-packages/kivy/app.py", line 918, in _run_prepare
@@ -33,20 +33,17 @@
 [WARNING] stderr:     parser = Parser(content=string, filename=fn)
 [WARNING] stderr:   File "/data/user/0/ru.iiec.pydroid3/files/arm-linux-androideabi/lib/python3.9/site-packages/kivy/lang/parser.py", line 402, in __init__
 [WARNING] stderr:     self.parse(content)
-[WARNING] stderr:   File "/data/user/0/ru.iiec.pydroid3/files/arm-linux-androideabi/lib/python3.9/site-packages/kivy/lang/parser.py", line 511, in parse
-[WARNING] stderr:     objects, remaining_lines = self.parse_level(0, lines)
-[WARNING] stderr:   File "/data/user/0/ru.iiec.pydroid3/files/arm-linux-androideabi/lib/python3.9/site-packages/kivy/lang/parser.py", line 614, in parse_level
-[WARNING] stderr:     _objects, _lines = self.parse_level(
-[WARNING] stderr:   File "/data/user/0/ru.iiec.pydroid3/files/arm-linux-androideabi/lib/python3.9/site-packages/kivy/lang/parser.py", line 614, in parse_level
-[WARNING] stderr:     _objects, _lines = self.parse_level(
-[WARNING] stderr:   File "/data/user/0/ru.iiec.pydroid3/files/arm-linux-androideabi/lib/python3.9/site-packages/kivy/lang/parser.py", line 624, in parse_level
-[WARNING] stderr:     raise ParserException(self, ln,
-[WARNING] stderr: kivy.lang.parser.ParserException: Parser: File "/storage/emulated/0/code/util/DownWithYT/v1.1/dwyt.kv", line 26:
-[WARNING] stderr: ...
-[WARNING] stderr:      24:            color:(0.8,0.2,0,0.6)
-[WARNING] stderr:      25:            size_hint:[None,None]
-[WARNING] stderr: >>   26:            pos_hint{"x": None}
-[WARNING] stderr:      27:            pos:{"x": root.center_x - 10}
-[WARNING] stderr:      28:        Image:
-[WARNING] stderr: ...
-[WARNING] stderr: Invalid property name
+[WARNING] stderr:   File "/data/user/0/ru.iiec.pydroid3/files/arm-linux-androideabi/lib/python3.9/site-packages/kivy/lang/parser.py", line 515, in parse
+[WARNING] stderr:     rule.precompile()
+[WARNING] stderr:   File "/data/user/0/ru.iiec.pydroid3/files/arm-linux-androideabi/lib/python3.9/site-packages/kivy/lang/parser.py", line 264, in precompile
+[WARNING] stderr:     x.precompile()
+[WARNING] stderr:   File "/data/user/0/ru.iiec.pydroid3/files/arm-linux-androideabi/lib/python3.9/site-packages/kivy/lang/parser.py", line 264, in precompile
+[WARNING] stderr:     x.precompile()
+[WARNING] stderr:   File "/data/user/0/ru.iiec.pydroid3/files/arm-linux-androideabi/lib/python3.9/site-packages/kivy/lang/parser.py", line 260, in precompile
+[WARNING] stderr:     x.precompile()
+[WARNING] stderr:   File "/data/user/0/ru.iiec.pydroid3/files/arm-linux-androideabi/lib/python3.9/site-packages/kivy/lang/parser.py", line 181, in precompile
+[WARNING] stderr:     compile(value, self.ctx.filename or '<string>', 'eval')
+[WARNING] stderr:   File "/storage/emulated/0/code/util/DownWithYT/v1.1/dwyt.kv", line 76
+[WARNING] stderr:     {"center_x": 0.25
+[WARNING] stderr:                     ^
+[WARNING] stderr: SyntaxError: unexpected EOF while parsing
