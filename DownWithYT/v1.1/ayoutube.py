@@ -276,18 +276,18 @@ class YT_List():
 
 #######################################
 #    DEBUG VARS & FUNCS
-global fempty
-fempty: aYouTube = aYouTube()
+global fempt
+fempt: aYouTube = aYouTube()
 track7 = YouTube(T7)
 
 def makeEmpty():
-    fempty = aYouTube()
+    fempt = aYouTube()
 
-def fillEmpty(f: aYouTube = fempty):
-    fempty = f.add_youtube(track7)
+def fillEmpty(f: aYouTube = fempt):
+    fempt = f.add_youtube(track7)
 
 def showdebug():
-    d = dict(fempty)
+    d = dict(fempt)
     for k in d.keys():
         v = d.get(k)
         print(f"{k}\t---\t{v}")
