@@ -7,7 +7,8 @@
 
 
 <YT_Widget>:
-    #size_hint: 1.0, 1.0
+    padding: 5,5
+    spacing: 5
     AnchorLayout:
         size_hint: 0.15, 1.0
         anchor_x:"left"
@@ -25,12 +26,6 @@
         BoxLayout:
             size_hint: 0.85, 0.5
             pos_hint:{"x": 0.15}
-            canvas.before:
-                Color:
-                    rgba: (0, 0.3, 0.7, 1)
-                Rectangle:
-                    size:self.size
-                    pos:self.pos
             YLabel:
                 id:yt_title
                 halign:"center"
@@ -89,14 +84,15 @@
         size:root.width, self.height
         TextInput:
             id:search_in
-            size_hint:(1.0,0.4)
+            size_hint:(1.0,0.3)
             pos_hint:{"center_x": 0.25, "center_y": 0.5}
             multiline:False
         Button:
             id:butt
             text:"search"
             on_press:root.do_it()
-            size_hint:(0.5,0.4)
+            size_hint:(0.5,0.3)
             pos_hint:{"x":0.75, "center_y": 0.5}
     YT_List:
         id:yts
+        size_hint: 1.0, 0.75
