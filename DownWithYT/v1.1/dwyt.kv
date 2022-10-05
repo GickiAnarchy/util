@@ -7,15 +7,13 @@
 
 
 <YT_Widget>:
-    size_hint: 1.0, 1.0
-    BoxLayout:
-        size_hint: None, 1.0
+    #size_hint: 1.0, 1.0
+    AnchorLayout:
+        size_hint: 0.15, 1.0
+        anchor_x:"left"
         Button:
             id:yt_btn
-            size_x_hint: 0.15
-            #size_hint: 0.15, 1.0
-            keep_ratio:True
-            allow_stretch:False
+            size_hint: 0.15, 1.0
             background_normal: "images/grn_btn.png"
             background_down: "images/red_btn.png"
             on_press:root.get_yt()
@@ -23,10 +21,16 @@
         halign:"right"
         rows:2
         size_hint: 0.85, 1.0
-        pos_hint:{"x": 0.1}
+        pos_hint:{"x": 0.15}
         BoxLayout:
             size_hint: 0.85, 0.5
-            pos_hint:{"x": 0.1}
+            pos_hint:{"x": 0.15}
+            canvas.before:
+                Color:
+                    rgba: (0, 0.3, 0.7, 1)
+                Rectangle:
+                    size:self.size
+                    pos:self.pos
             YLabel:
                 id:yt_title
                 halign:"center"
@@ -55,11 +59,11 @@
             rgba: (1.0,0.4,0.1,1)
         Rectangle:
             size:self.size
-            pos:self.pos    
+            pos:self.pos
     RecycleBoxLayout:
         cols:1
         halign:"center"
-        default_size_hint: 0.6, None
+        default_size_hint: 1.0, None
         default_size: None, dp(56)
         size_hint_y: None
         height: self.minimum_height
