@@ -8,15 +8,17 @@
 
 <YT_Widget>:
     size_hint: 1.0, 1.0
-    
-    Button:
-        id:yt_btn
-        size_hint: 0.15, 1.0
-        allow_stretch:False
-        #size_hint_x: 0.15
-        background_normal: "images/grn_btn.png"
-        background_down: "images/red_btn.png"
-        on_press:root.get_yt()
+    BoxLayout:
+        size_hint: None, 1.0
+        Button:
+            id:yt_btn
+            size_x_hint: 0.15
+            #size_hint: 0.15, 1.0
+            keep_ratio:True
+            allow_stretch:False
+            background_normal: "images/grn_btn.png"
+            background_down: "images/red_btn.png"
+            on_press:root.get_yt()
     GridLayout:
         halign:"right"
         rows:2
