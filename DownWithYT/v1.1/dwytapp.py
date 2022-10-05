@@ -17,7 +17,7 @@ from kivy.uix.recycleboxlayout import RecycleBoxLayout
 from kivy.properties import ObjectProperty, StringProperty,ListProperty
 from kivy.logger import Logger
 from kivy.config import Config
-from ayoutube import aYouTube
+from ayoutube import aYouTube, T7
 
 Config.set('graphics', 'resizable', True)
 
@@ -79,11 +79,14 @@ class MainBox(BoxLayout):
     def do_it(self):
         txt = self.ids.search_in.text
         if txt in (None, ""):
+            lst = [YouTube(T7)]
+            self.ids.yts.add_data(lst)
             return False
-        sch = Search(txt)
-        lst = sch.results
-        self.ids.yts.add_data(lst)
-
+        else:
+            sch = Search(txt)
+            lst = sch.results
+            self.ids.yts.add_data(lst)
+        return True
 
 
 ##    ##    ##    ##    ##    ##    ##    ##    ##    ##    ##    ##
