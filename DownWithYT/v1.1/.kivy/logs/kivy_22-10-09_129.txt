@@ -1,4 +1,4 @@
-[INFO   ] Logger: Record log in /storage/emulated/0/code/util/DownWithYT/v1.1/.kivy/logs/kivy_22-10-09_0.txt
+[INFO   ] Logger: Record log in /storage/emulated/0/code/util/DownWithYT/v1.1/.kivy/logs/kivy_22-10-09_129.txt
 [INFO   ] Kivy: v2.0.0
 [INFO   ] Kivy: Installed at "/data/user/0/ru.iiec.pydroid3/files/arm-linux-androideabi/lib/python3.9/site-packages/kivy/__init__.py"
 [INFO   ] Python: v3.9.7 (default, Oct  9 2021, 08:02:40) 
@@ -23,6 +23,15 @@
 [WARNING] Base: Unknown <android> provider
 [INFO   ] Base: Start application main loop
 [INFO   ] Base: Leaving application in progress...
+[WARNING] stderr: Traceback (most recent call last):
+[WARNING] stderr:   File "/data/user/0/ru.iiec.pydroid3/files/arm-linux-androideabi/lib/python3.9/site-packages/kivy/lang/builder.py", line 926, in _build_canvas
+[WARNING] stderr:     setattr(instr, key, value)
+[WARNING] stderr:   File "kivy/graphics/vertex_instructions.pyx", line 1574, in kivy.graphics.vertex_instructions.RoundedRectangle.radius.__set__
+[WARNING] stderr:   File "kivy/graphics/vertex_instructions.pyx", line 1334, in kivy.graphics.vertex_instructions.RoundedRectangle._check_radius
+[WARNING] stderr: TypeError: 'int' object is not iterable
+[WARNING] stderr: 
+[WARNING] stderr: During handling of the above exception, another exception occurred:
+[WARNING] stderr: 
 [WARNING] stderr: Traceback (most recent call last):
 [WARNING] stderr:   File "/storage/emulated/0/code/util/DownWithYT/v1.1/dwytapp.py", line 113, in <module>
 [WARNING] stderr:     scr.run()
@@ -72,8 +81,19 @@
 [WARNING] stderr:     self._apply_rule(
 [WARNING] stderr:   File "/data/user/0/ru.iiec.pydroid3/files/arm-linux-androideabi/lib/python3.9/site-packages/kivy/lang/builder.py", line 596, in _apply_rule
 [WARNING] stderr:     self._build_canvas(widget.canvas.before, widget,
-[WARNING] stderr:   File "/data/user/0/ru.iiec.pydroid3/files/arm-linux-androideabi/lib/python3.9/site-packages/kivy/lang/builder.py", line 913, in _build_canvas
-[WARNING] stderr:     instr = Factory.get(name)()
-[WARNING] stderr:   File "/data/user/0/ru.iiec.pydroid3/files/arm-linux-androideabi/lib/python3.9/site-packages/kivy/factory.py", line 146, in __getattr__
-[WARNING] stderr:     raise FactoryException('Unknown class <%s>' % name)
-[WARNING] stderr: kivy.factory.FactoryException: Unknown class <Ellipsis>
+[WARNING] stderr:   File "/data/user/0/ru.iiec.pydroid3/files/arm-linux-androideabi/lib/python3.9/site-packages/kivy/lang/builder.py", line 929, in _build_canvas
+[WARNING] stderr:     raise BuilderException(
+[WARNING] stderr: kivy.lang.builder.BuilderException: Parser: File "/storage/emulated/0/code/util/DownWithYT/v1.1/dwyt.kv", line 15:
+[WARNING] stderr: ...
+[WARNING] stderr:      13:            rgba:(0, 0, 1, 1)
+[WARNING] stderr:      14:        RoundedRectangle:
+[WARNING] stderr: >>   15:            radius:50
+[WARNING] stderr:      16:
+[WARNING] stderr:      17:<YT_Widget>:
+[WARNING] stderr: ...
+[WARNING] stderr: TypeError: 'int' object is not iterable
+[WARNING] stderr:   File "/data/user/0/ru.iiec.pydroid3/files/arm-linux-androideabi/lib/python3.9/site-packages/kivy/lang/builder.py", line 926, in _build_canvas
+[WARNING] stderr:     setattr(instr, key, value)
+[WARNING] stderr:   File "kivy/graphics/vertex_instructions.pyx", line 1574, in kivy.graphics.vertex_instructions.RoundedRectangle.radius.__set__
+[WARNING] stderr:   File "kivy/graphics/vertex_instructions.pyx", line 1334, in kivy.graphics.vertex_instructions.RoundedRectangle._check_radius
+[WARNING] stderr: 

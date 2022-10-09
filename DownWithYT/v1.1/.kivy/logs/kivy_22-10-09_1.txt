@@ -23,3 +23,57 @@
 [WARNING] Base: Unknown <android> provider
 [INFO   ] Base: Start application main loop
 [INFO   ] Base: Leaving application in progress...
+[WARNING] stderr: Traceback (most recent call last):
+[WARNING] stderr:   File "/storage/emulated/0/code/util/DownWithYT/v1.1/dwytapp.py", line 113, in <module>
+[WARNING] stderr:     scr.run()
+[WARNING] stderr:   File "/data/user/0/ru.iiec.pydroid3/files/arm-linux-androideabi/lib/python3.9/site-packages/kivy/app.py", line 950, in run
+[WARNING] stderr:     runTouchApp()
+[WARNING] stderr:   File "/data/user/0/ru.iiec.pydroid3/files/arm-linux-androideabi/lib/python3.9/site-packages/kivy/base.py", line 582, in runTouchApp
+[WARNING] stderr:     EventLoop.mainloop()
+[WARNING] stderr:   File "/data/user/0/ru.iiec.pydroid3/files/arm-linux-androideabi/lib/python3.9/site-packages/kivy/base.py", line 347, in mainloop
+[WARNING] stderr:     self.idle()
+[WARNING] stderr:   File "/data/user/0/ru.iiec.pydroid3/files/arm-linux-androideabi/lib/python3.9/site-packages/kivy/base.py", line 399, in idle
+[WARNING] stderr:     Clock.tick_draw()
+[WARNING] stderr:   File "/data/user/0/ru.iiec.pydroid3/files/arm-linux-androideabi/lib/python3.9/site-packages/kivy/clock.py", line 783, in tick_draw
+[WARNING] stderr:     self._process_events_before_frame()
+[WARNING] stderr:   File "kivy/_clock.pyx", line 658, in kivy._clock.CyClockBase._process_events_before_frame
+[WARNING] stderr:   File "kivy/_clock.pyx", line 701, in kivy._clock.CyClockBase._process_events_before_frame
+[WARNING] stderr:   File "kivy/_clock.pyx", line 697, in kivy._clock.CyClockBase._process_events_before_frame
+[WARNING] stderr:   File "kivy/_clock.pyx", line 218, in kivy._clock.ClockEvent.tick
+[WARNING] stderr:   File "/data/user/0/ru.iiec.pydroid3/files/arm-linux-androideabi/lib/python3.9/site-packages/kivy/uix/recycleview/__init__.py", line 257, in refresh_views
+[WARNING] stderr:     lm.set_visible_views(indices, data, viewport)
+[WARNING] stderr:   File "/data/user/0/ru.iiec.pydroid3/files/arm-linux-androideabi/lib/python3.9/site-packages/kivy/uix/recyclelayout.py", line 235, in set_visible_views
+[WARNING] stderr:     new, remaining, old = self.recycleview.view_adapter.set_visible_views(
+[WARNING] stderr:   File "/data/user/0/ru.iiec.pydroid3/files/arm-linux-androideabi/lib/python3.9/site-packages/kivy/uix/recycleview/views.py", line 406, in set_visible_views
+[WARNING] stderr:     view = get_view(index, data[index],
+[WARNING] stderr:   File "/data/user/0/ru.iiec.pydroid3/files/arm-linux-androideabi/lib/python3.9/site-packages/kivy/uix/recycleview/views.py", line 262, in get_view
+[WARNING] stderr:     view = self.create_view(index, data_item, viewclass)
+[WARNING] stderr:   File "/data/user/0/ru.iiec.pydroid3/files/arm-linux-androideabi/lib/python3.9/site-packages/kivy/uix/recycleview/views.py", line 225, in create_view
+[WARNING] stderr:     view = viewclass()
+[WARNING] stderr:   File "/storage/emulated/0/code/util/DownWithYT/v1.1/dwytapp.py", line 46, in __init__
+[WARNING] stderr:     super().__init__(**kwargs)
+[WARNING] stderr:   File "/data/user/0/ru.iiec.pydroid3/files/arm-linux-androideabi/lib/python3.9/site-packages/kivy/uix/boxlayout.py", line 145, in __init__
+[WARNING] stderr:     super(BoxLayout, self).__init__(**kwargs)
+[WARNING] stderr:   File "/data/user/0/ru.iiec.pydroid3/files/arm-linux-androideabi/lib/python3.9/site-packages/kivy/uix/layout.py", line 76, in __init__
+[WARNING] stderr:     super(Layout, self).__init__(**kwargs)
+[WARNING] stderr:   File "/data/user/0/ru.iiec.pydroid3/files/arm-linux-androideabi/lib/python3.9/site-packages/kivy/uix/widget.py", line 359, in __init__
+[WARNING] stderr:     self.apply_class_lang_rules(
+[WARNING] stderr:   File "/data/user/0/ru.iiec.pydroid3/files/arm-linux-androideabi/lib/python3.9/site-packages/kivy/uix/widget.py", line 463, in apply_class_lang_rules
+[WARNING] stderr:     Builder.apply(
+[WARNING] stderr:   File "/data/user/0/ru.iiec.pydroid3/files/arm-linux-androideabi/lib/python3.9/site-packages/kivy/lang/builder.py", line 541, in apply
+[WARNING] stderr:     self._apply_rule(
+[WARNING] stderr:   File "/data/user/0/ru.iiec.pydroid3/files/arm-linux-androideabi/lib/python3.9/site-packages/kivy/lang/builder.py", line 663, in _apply_rule
+[WARNING] stderr:     self._apply_rule(
+[WARNING] stderr:   File "/data/user/0/ru.iiec.pydroid3/files/arm-linux-androideabi/lib/python3.9/site-packages/kivy/lang/builder.py", line 661, in _apply_rule
+[WARNING] stderr:     child.apply_class_lang_rules(
+[WARNING] stderr:   File "/data/user/0/ru.iiec.pydroid3/files/arm-linux-androideabi/lib/python3.9/site-packages/kivy/uix/widget.py", line 463, in apply_class_lang_rules
+[WARNING] stderr:     Builder.apply(
+[WARNING] stderr:   File "/data/user/0/ru.iiec.pydroid3/files/arm-linux-androideabi/lib/python3.9/site-packages/kivy/lang/builder.py", line 541, in apply
+[WARNING] stderr:     self._apply_rule(
+[WARNING] stderr:   File "/data/user/0/ru.iiec.pydroid3/files/arm-linux-androideabi/lib/python3.9/site-packages/kivy/lang/builder.py", line 596, in _apply_rule
+[WARNING] stderr:     self._build_canvas(widget.canvas.before, widget,
+[WARNING] stderr:   File "/data/user/0/ru.iiec.pydroid3/files/arm-linux-androideabi/lib/python3.9/site-packages/kivy/lang/builder.py", line 913, in _build_canvas
+[WARNING] stderr:     instr = Factory.get(name)()
+[WARNING] stderr:   File "/data/user/0/ru.iiec.pydroid3/files/arm-linux-androideabi/lib/python3.9/site-packages/kivy/factory.py", line 146, in __getattr__
+[WARNING] stderr:     raise FactoryException('Unknown class <%s>' % name)
+[WARNING] stderr: kivy.factory.FactoryException: Unknown class <Ellipsis>

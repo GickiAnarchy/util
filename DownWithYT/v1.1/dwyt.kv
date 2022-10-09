@@ -5,16 +5,26 @@
     font_size:12
     text_size:self.size
 
+<ImgBtn@Button>:
+#    background: (0,0,0,0)
+    background_normal: "images/grn_btn.png"
+    background_pressed:"images/red_btn.png"
+
+
 <YT_Widget>:
     padding: 5,5
     spacing: 5
-    size_hint: 0.15, 1.0
     AnchorLayout:
+        size_hint: 0.15, None
         anchor_x:"left"
-        Button:
-            background_normal: "images/grn_btn.png"
-            background_down: "images/red_btn.png"
-            on_press:root.dl_this()
+        ImgBtn:
+            size_hint: None,None
+#        Button:
+#            size_hint: 0.15, None]
+#            pos:self.pos
+#            background_normal: "images/grn_btn.png"
+#            background_down: "images/red_btn.png"
+#            on_press:root.dl_this()
     GridLayout:
         halign:"right"
         rows:2

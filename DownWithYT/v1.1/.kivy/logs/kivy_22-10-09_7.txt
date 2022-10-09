@@ -4,6 +4,9 @@
 [INFO   ] Python: v3.9.7 (default, Oct  9 2021, 08:02:40) 
 [GCC 11.1.0]
 [INFO   ] Python: Interpreter at "/data/user/0/ru.iiec.pydroid3/files/arm-linux-androideabi/bin/python3"
+[INFO   ] Logger: Purge log fired. Analysing...
+[INFO   ] Logger: Purge 8 log files
+[INFO   ] Logger: Purge finished!
 [INFO   ] Factory: 186 symbols loaded
 [INFO   ] Image: Providers: img_tex, img_dds, img_sdl2, img_pil (img_ffpyplayer ignored)
 [INFO   ] Window: Provider: sdl2
@@ -22,4 +25,5 @@
 [INFO   ] GL: NPOT texture support is available
 [WARNING] Base: Unknown <android> provider
 [INFO   ] Base: Start application main loop
+[INFO   ] USE: YT_Widget
 [INFO   ] Base: Leaving application in progress...
