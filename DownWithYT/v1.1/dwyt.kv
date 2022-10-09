@@ -5,19 +5,16 @@
     font_size:12
     text_size:self.size
 
-
 <YT_Widget>:
     padding: 5,5
     spacing: 5
+    size_hint: 0.15, 1.0
     AnchorLayout:
-        size_hint: 0.15, 1.0
         anchor_x:"left"
         Button:
-            id:yt_btn
-            size_hint: 0.15, 1.0
             background_normal: "images/grn_btn.png"
             background_down: "images/red_btn.png"
-            on_press:root.get_yt()
+            on_press:root.dl_this()
     GridLayout:
         halign:"right"
         rows:2
@@ -49,12 +46,14 @@
     orientation: "vertical"
     spacing: 20
     padding:10, 10
+
     canvas.before:
         Color:
             rgba: (1.0,0.4,0.1,1)
         Rectangle:
             size:self.size
             pos:self.pos
+
     RecycleBoxLayout:
         cols:1
         halign:"center"
@@ -71,30 +70,33 @@
     halign:"center"
     size_hint:None,None
     size:350,500
+
     canvas.before:
         Color:
             rgba: (0.2,0.2,0.4,1)
         Rectangle:
             size:self.size
             pos:self.pos
+
     YT_Header:
         id:header
         size_hint: 1.0, 0.1
     BoxLayout:
-        size_hint:None,0.25
+        size_hint:None,0.15
         padding: 10,10
         spacing: 10
         size:root.width, self.height
         TextInput:
             id:search_in
-            size_hint:(1.0,0.3)
+            size_hint:(1.0,0.5)
             pos_hint:{"center_x": 0.25, "center_y": 0.5}
             multiline:False
+            font_size:12
         Button:
             id:butt
             text:"search"
-            on_press:root.do_it()
-            size_hint:(0.5,0.3)
+            on_release:root.do_it()
+            size_hint:(0.5,0.5)
             pos_hint:{"x":0.75, "center_y": 0.5}
     YT_List:
         id:yts
