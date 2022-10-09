@@ -26,6 +26,15 @@ Config.set('graphics', 'resizable', True)
 dl_dir = os.path.join(os.path.dirname(__file__), "Downloads")
 
 ##    ##    ##    ##    ##    ##    ##    ##    ##    ##    ##    ##
+class YT_Header(BoxLayout):
+    def __init__(self, **kwargs):
+        super(YT_Header, self).__init__(**kwargs)
+        logo = Image(source = "images/down_logo.png", allow_stretch = False, keep_ratio = True)
+        logo.size_hint_y = 0.75
+        self.add_widget(logo)
+
+
+##    ##    ##    ##    ##    ##    ##    ##    ##    ##    ##    ##
 class YT_Widget(BoxLayout):
     title = StringProperty()
     author = StringProperty()
@@ -94,8 +103,6 @@ class DWYTApp(App):
     def build(self):
         Logger.info("Start: Started App")
         return MainBox()
-
-
 
 
 ##    ##    ##    ##    ##    ##    ##    ##    ##    ##    ##    ##
