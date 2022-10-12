@@ -12,6 +12,7 @@ from kivy.uix.textinput import TextInput
 from kivy.uix.button import Button
 from kivy.uix.label import Label
 from kivy.uix.image import Image
+from kivy.uix.popup import Popup
 from kivy.uix.recycleview import RecycleView
 from kivy.uix.recycleboxlayout import RecycleBoxLayout
 from kivy.properties import ObjectProperty, StringProperty,ListProperty
@@ -61,6 +62,9 @@ class YT_Widget(BoxLayout):
             return True
         
 
+##    ##    ##    ##    ##    ##    ##    ##    ##    ##    ##    ##
+class Ask(Popup):
+    
 
 
 ##    ##    ##    ##    ##    ##    ##    ##    ##    ##    ##    ##
