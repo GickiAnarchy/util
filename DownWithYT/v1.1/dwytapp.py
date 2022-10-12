@@ -64,7 +64,7 @@ class YT_Widget(BoxLayout):
 
 ##    ##    ##    ##    ##    ##    ##    ##    ##    ##    ##    ##
 class Ask(Popup):
-    
+    pass
 
 
 ##    ##    ##    ##    ##    ##    ##    ##    ##    ##    ##    ##
