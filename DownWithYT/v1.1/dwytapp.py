@@ -27,6 +27,15 @@ Config.set('graphics', 'resizable', True)
 dl_dir = os.path.join(os.path.dirname(__file__), "Downloads")
 
 ##    ##    ##    ##    ##    ##    ##    ##    ##    ##    ##    ##
+class YT_Header(BoxLayout):
+    def __init__(self, **kwargs):
+        super(YT_Header, self).__init__(**kwargs)
+        logo = Image(source = "images/down_logo.png", allow_stretch = False, keep_ratio = True)
+        logo.size_hint_y = 0.75
+        self.add_widget(logo)
+
+
+##    ##    ##    ##    ##    ##    ##    ##    ##    ##    ##    ##
 class YT_Widget(BoxLayout):
     title = StringProperty()
     author = StringProperty()
@@ -41,6 +50,8 @@ class YT_Widget(BoxLayout):
         self.author = "channel"
         self.length = "0"
         self.url = "None"
+        if self.check_exists():
+            self.ids.yt_btn.disabled = True
 
     def get_yt(self):
         if self.url != None:
@@ -49,6 +60,9 @@ class YT_Widget(BoxLayout):
             return ayt
 
     def dl_this(self):
+        if self.check_exists():
+            self.ids.yt_btn.disabled = True
+            return False
         obj = self.get_yt()
         if self.check_exists():
             self.yt_btn.disabled = True
@@ -58,7 +72,7 @@ class YT_Widget(BoxLayout):
     def check_exists(self):
         if self.url in (None, ""):
             return False
-        if os.path.isfile(f"{self.title}.mp3") or os.path.isfile(f"{self.title}.mp4"):
+        if os.path.isfile(f"{dl_dir}/{self.title}.mp3") or os.path.isfile(f"{dl_dir}/{self.title}.mp4"):
             return True
         
 
@@ -74,7 +88,6 @@ class YT_List(RecycleView):
     def add_data(self, new_data):
         self.yt_data = [{"title":i.title, "author":i.author,"url":i.watch_url,
                          "length":str(format(i.length / 60, ".2f"))} for i in new_data]
-
 
 
 ##    ##    ##    ##    ##    ##    ##    ##    ##    ##    ##    ##
@@ -98,8 +111,6 @@ class DWYTApp(App):
     def build(self):
         Logger.info("Start: Started App")
         return MainBox()
-
-
 
 
 ##    ##    ##    ##    ##    ##    ##    ##    ##    ##    ##    ##
