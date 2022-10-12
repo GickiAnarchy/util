@@ -135,6 +135,7 @@ dmypy.json
 
 #DownWithYT
 /DownWithYT/.data/
+/DownWithYT/.kivy/
 /DownWithYT/v01/.data
 /DownWithYT/v02/*.mp3
 
