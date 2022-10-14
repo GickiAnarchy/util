@@ -22,9 +22,8 @@ from ayoutube import aYouTube, T7
 
 Config.set('graphics', 'resizable', True)
 
-
-
 dl_dir = os.path.join(os.path.dirname(__file__), "Downloads")
+
 
 ##    ##    ##    ##    ##    ##    ##    ##    ##    ##    ##    ##
 class YT_Header(BoxLayout):
@@ -98,7 +97,7 @@ class MainBox(BoxLayout):
         if txt in (None, ""):
             lst = [YouTube(T7)]
             self.ids.yts.add_data(lst)
-            return False
+                return False
         else:
             sch = Search(txt)
             lst = sch.results
