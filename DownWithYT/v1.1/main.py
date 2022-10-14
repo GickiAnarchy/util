@@ -104,6 +104,8 @@ class MainBox(BoxLayout):
             self.ids.yts.add_data(lst)
         return True
 
+    def exit_me(self):
+        pass
 
 ##    ##    ##    ##    ##    ##    ##    ##    ##    ##    ##    ##
 class DWYTApp(App):
