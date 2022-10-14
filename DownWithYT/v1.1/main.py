@@ -116,5 +116,4 @@ class DWYTApp(App):
 
 ##    ##    ##    ##    ##    ##    ##    ##    ##    ##    ##    ##
 if __name__ == "__main__":
-    scr = DWYTApp()
-    scr.run()
+    DWYTApp().run()
