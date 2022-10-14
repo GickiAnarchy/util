@@ -1,6 +1,5 @@
 import os
 import kivy
-import random
 from pytube import YouTube, Playlist, Search
 from kivy.app import App
 from kivy.uix.widget import Widget
@@ -8,6 +7,7 @@ from kivy.uix.gridlayout import GridLayout
 from kivy.uix.floatlayout import FloatLayout
 from kivy.uix.boxlayout import BoxLayout
 from kivy.uix.anchorlayout import AnchorLayout
+from kivy.uix.relativelayout import RelativeLayout
 from kivy.uix.textinput import TextInput
 from kivy.uix.button import Button
 from kivy.uix.label import Label
@@ -31,6 +31,7 @@ class YT_Header(BoxLayout):
         super(YT_Header, self).__init__(**kwargs)
         logo = Image(source = "images/down_logo.png", allow_stretch = False, keep_ratio = True)
         logo.size_hint_y = 0.75
+        logo.pos_hint = {"center_x": 0.5}
         self.add_widget(logo)
 
 
@@ -91,6 +92,9 @@ class YT_List(RecycleView):
 
 ##    ##    ##    ##    ##    ##    ##    ##    ##    ##    ##    ##
 class MainBox(BoxLayout):
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+        self.ids.search_in
 
     def do_it(self):
         txt = self.ids.search_in.text
@@ -104,13 +108,12 @@ class MainBox(BoxLayout):
             self.ids.yts.add_data(lst)
         return True
 
-    def exit_me(self):
-        pass
 
 ##    ##    ##    ##    ##    ##    ##    ##    ##    ##    ##    ##
 class DWYTApp(App):
     def build(self):
         Logger.info("Start: Started App")
+        
         return MainBox()
 
 

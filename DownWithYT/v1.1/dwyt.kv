@@ -2,11 +2,12 @@
 #size:x:width, y:height
 
 <YLabel@Label>:
-    font_size:12
+    font_size:14
     text_size:self.size
 
 
 <YT_Widget>:
+    size_hint_x: 1.0
     padding: 5,5
     spacing: 5
     AnchorLayout:
@@ -68,9 +69,9 @@
 <MainBox>:
     search_in:search_in
     orientation:"vertical"
-    halign:"center"
-    size_hint:None,None
-    size:350,500
+    #halign:"center"
+    size_hint:1.0, 1.0
+    #size:350,500
     # canvas.before:
     #     Color:
     #         rgba: (0.2,0.2,0.4,1)
@@ -80,31 +81,31 @@
     YT_Header:
         id:header
         size_hint: 1.0, 0.10
+        pos_hint: {"center_x":0.5}
     BoxLayout:
-        size_hint:None,0.25
+        size_hint: 1.0, 0.25
         padding: 10,10
         spacing: 10
-        size:root.width, self.height
         TextInput:
             id:search_in
-            size_hint:(1.0,0.3)
+            size_hint:(1.0,0.5)
             pos_hint:{"center_x": 0.25, "center_y": 0.5}
             multiline:False
         BoxLayout:
             orientation:"vertical"
-            pos_hint:{"x":0.75}
+            pos_hint:{"center_x":0.75}
             Button:
                 id:butt
-                text:"search"
+                text:"Search"
                 on_press:root.do_it()
                 size_hint:(0.5,0.3)
-                pos_hint:{"x":0.75, "center_y": 0.25}
+                pos_hint:{"center_x":0.75, "center_y": 0.25}
             Button:
                 id:exit_btn
                 text:"Exit"
                 on_press:app.stop()
                 size_hint:(0.5,0.3)
-                pos_hint:{"x":0.75, "center_y": 0.75}
+                pos_hint:{"center_x":0.75, "center_y": 0.75}
     YT_List:
         id:yts
         size_hint: 1.0, 0.75
