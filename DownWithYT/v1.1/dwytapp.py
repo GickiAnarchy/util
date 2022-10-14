@@ -97,7 +97,7 @@ class MainBox(BoxLayout):
         if txt in (None, ""):
             lst = [YouTube(T7)]
             self.ids.yts.add_data(lst)
-                return False
+            return False
         else:
             sch = Search(txt)
             lst = sch.results
