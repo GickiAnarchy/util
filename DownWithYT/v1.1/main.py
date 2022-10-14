@@ -1,3 +1,4 @@
+import certifi
 import os
 import kivy
 from pytube import YouTube, Playlist, Search
@@ -19,6 +20,8 @@ from kivy.properties import ObjectProperty, StringProperty,ListProperty
 from kivy.logger import Logger
 from kivy.config import Config
 from ayoutube import aYouTube, T7
+
+os.environ["SSL_CERT_FILE"] = certifi.where()
 
 Config.set('graphics', 'resizable', True)
 
