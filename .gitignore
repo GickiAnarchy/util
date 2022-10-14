@@ -135,9 +135,10 @@ dmypy.json
 
 #DownWithYT
 /DownWithYT/.data/
-/DownWithYT/.kivy/
+/DownWithYT/v1.1/.kivy/
 /DownWithYT/v01/.data
 /DownWithYT/v02/*.mp3
+DownWithYT/v1.1/.buildozer
 
 *.mp3
 *.wav
