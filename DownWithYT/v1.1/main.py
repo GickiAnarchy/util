@@ -1,4 +1,4 @@
-import certifi
+#import certifi
 import os
 import kivy
 from pytube import YouTube, Playlist, Search
@@ -20,8 +20,8 @@ from kivy.properties import ObjectProperty, StringProperty,ListProperty
 from kivy.logger import Logger
 from kivy.config import Config
 from ayoutube import aYouTube, T7
-import pytube3
-os.environ["SSL_CERT_FILE"] = certifi.where()
+#import pytube3
+#os.environ["SSL_CERT_FILE"] = certifi.where()
 
 Config.set('graphics', 'resizable', True)
 
@@ -95,9 +95,6 @@ class YT_List(RecycleView):
 
 ##    ##    ##    ##    ##    ##    ##    ##    ##    ##    ##    ##
 class MainBox(BoxLayout):
-    # def __init__(self, **kwargs):
-    #     super().__init__(**kwargs)
-        
 
     def do_it(self):
         txt = self.ids.search_in.text
@@ -116,7 +113,6 @@ class MainBox(BoxLayout):
 class DWYTApp(App):
     def build(self):
         Logger.info("Start: Started App")
-        
         return MainBox()
 
 
