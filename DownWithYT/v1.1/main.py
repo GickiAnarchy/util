@@ -95,9 +95,9 @@ class YT_List(RecycleView):
 
 ##    ##    ##    ##    ##    ##    ##    ##    ##    ##    ##    ##
 class MainBox(BoxLayout):
-    def __init__(self, **kwargs):
-        super().__init__(**kwargs)
-        self.ids.search_in
+    # def __init__(self, **kwargs):
+    #     super().__init__(**kwargs)
+        
 
     def do_it(self):
         txt = self.ids.search_in.text
