@@ -1,6 +1,6 @@
 import os
 import json
-from pytube import YouTube, Search, Playlist
+from pytube import YouTube, Playlist
 
 #PYTUBE WRAPPER FOR KIVY GUI
 #gui :kivy_main
