@@ -1,0 +1,3 @@
+[submodule "dwyt"]
+	path = dwyt
+	url = https://github.com/GickiAnarchy/dwyt.git
